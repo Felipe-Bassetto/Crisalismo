@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EmptySpace: MonoBehaviour
 {
-    public GameObject constructionGuide;
+    public GameObject constructionWindow;
     public ConstructionManager cm;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class EmptySpace: MonoBehaviour
 
     void OnMouseDown()
     {
-        constructionGuide.SetActive(true);
+        constructionWindow.SetActive(true);
         cm.SetarVariaveis(gameObject.transform.position, gameObject);
     }
 }

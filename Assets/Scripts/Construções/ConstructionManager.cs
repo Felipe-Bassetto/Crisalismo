@@ -5,10 +5,12 @@ using UnityEngine;
 public class ConstructionManager : MonoBehaviour
 {
     public GameObject[] arrPrefabsConstruction;
-    public GameObject constructionGuide;
+    public GameObject constructionWindow;
+    public GameObject reactiveWindow;
+    
 
     private Vector3 positionSpace;
-    private GameObject spaceDisable;
+    private GameObject objectAffected;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,13 +26,20 @@ public class ConstructionManager : MonoBehaviour
     public void Construir(int indexConst)
     {
         Instantiate(arrPrefabsConstruction[indexConst], positionSpace, Quaternion.identity);
-        spaceDisable.SetActive(false);
-        constructionGuide.SetActive(false);
+        objectAffected.SetActive(false);
+        constructionWindow.SetActive(false);
+    }
+    public void Reativar()
+    {
+        DisabledConstruction sp = objectAffected.GetComponent<DisabledConstruction>();
+        Instantiate(arrPrefabsConstruction[sp.indexConstruction], positionSpace, Quaternion.identity);
+        Destroy(objectAffected);
+        reactiveWindow.SetActive(false);
     }
 
     public void SetarVariaveis(Vector3 position, GameObject space)
     {
         positionSpace = position;
-        spaceDisable = space;
+        objectAffected = space;
     }
 }
