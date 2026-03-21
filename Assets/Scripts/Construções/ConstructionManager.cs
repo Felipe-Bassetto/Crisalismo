@@ -5,9 +5,7 @@ using UnityEngine;
 public class ConstructionManager : MonoBehaviour
 {
     public GameObject[] arrPrefabsConstruction;
-    public GameObject constructionWindow;
-    public GameObject reactiveWindow;
-    
+    public GameObject constructionWindow;    
 
     private Vector3 positionSpace;
     private GameObject objectAffected;
@@ -28,13 +26,6 @@ public class ConstructionManager : MonoBehaviour
         Instantiate(arrPrefabsConstruction[indexConst], positionSpace, Quaternion.identity);
         objectAffected.SetActive(false);
         constructionWindow.SetActive(false);
-    }
-    public void Reativar()
-    {
-        DisabledConstruction sp = objectAffected.GetComponent<DisabledConstruction>();
-        Instantiate(arrPrefabsConstruction[sp.indexConstruction], positionSpace, Quaternion.identity);
-        Destroy(objectAffected);
-        reactiveWindow.SetActive(false);
     }
 
     public void SetarVariaveis(Vector3 position, GameObject space)

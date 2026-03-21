@@ -4,33 +4,24 @@ using UnityEngine;
 
 public class ActivedConstruction : MonoBehaviour
 {
+    [Header("Variáveis minigame")]
 
-    public GameObject prefabDesativado;
-    public float tempoConsumir;
-    float tempo = 0f;
-    private int indexContruction;
+    public GameManager GM;
+    public int indexContruction;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GM = FindFirstObjectByType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        tempo += Time.deltaTime;
-
-        if (tempo >= tempoConsumir)
-        {
-            tempo = 0f;
-            Debug.Log("Consumido");
-            Instantiate(prefabDesativado, gameObject.transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
     }
 
     void OnMouseDown()
     {
-        //cm.SetarVariaveis(gameObject.transform.position, gameObject);
+        GM.gameObject.SetActive(true);
+        GM.SetMinigame(indexContruction);
     }
 }

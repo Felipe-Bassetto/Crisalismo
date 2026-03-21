@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 5551169282694325283}
   - component: {fileID: 50651354022737688}
   - component: {fileID: 6583016595899714243}
-  - component: {fileID: -1986877426516184009}
   m_Layer: 0
-  m_Name: Navio Desativado
+  m_Name: Minigame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,18 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1986877426516184009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6884455302007082816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39220dde35d5c9448d58240e379fc07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reativar: {fileID: 0}
-  cm: {fileID: 0}
-  indexConstruction: 0
