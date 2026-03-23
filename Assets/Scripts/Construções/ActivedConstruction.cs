@@ -6,7 +6,7 @@ public class ActivedConstruction : MonoBehaviour
 {
     [Header("Variáveis minigame")]
 
-    public GameManager GM;
+    private GameManager GM;
     public int indexContruction;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class ActivedConstruction : MonoBehaviour
 
     void OnMouseDown()
     {
-        GM.gameObject.SetActive(true);
         GM.SetMinigame(indexContruction);
+        GM.OpenMinigame();
     }
 }

@@ -23,6 +23,15 @@ public class FishingManager : MonoBehaviour
 
     private void Start()
     {
+        GameObject canvas = GameObject.Find("Canvas");
+        Transform seta = canvas.transform.Find("MinigameSetas/Direção");
+        Transform pontos = canvas.transform.Find("MinigameSetas/Points");
+
+        GameObject objSeta = seta.gameObject;
+        GameObject objPoint = pontos.gameObject;
+        TMP = objSeta.GetComponent<TextMeshProUGUI>();
+        pointUI = objPoint.GetComponent<TextMeshProUGUI>();
+
         currentInput = Random.Range(0, 4);
         currentTimeAction = maxTimeAction;
         currentTimeFishing = maxTimeFishing;

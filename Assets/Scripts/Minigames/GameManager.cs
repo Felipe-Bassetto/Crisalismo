@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Variáveis Minigames")]
     public GameObject[] arrPrefabsMinigames;
+    public GameObject canvasMinigame;
 
     private int indexMinigame;
 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public void OpenMinigame()
     {
         Instantiate(arrPrefabsMinigames[indexMinigame], new Vector3(100, 100, 0), Quaternion.identity);
+        canvasMinigame.SetActive(true);
     }
 
     public void SetMinigame(int index)
