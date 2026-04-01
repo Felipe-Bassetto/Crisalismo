@@ -102,6 +102,6 @@ public class MinigamePesca : MonoBehaviour
             sliderProgresso.value -= velocidadePerda * Time.deltaTime;
         }
 
-        if (sliderProgresso.value >= 1) Debug.Log("PEIXE PEIXXXXXXCADO!");
+        if (sliderProgresso.value >= 1) Debug.Log("Peixe peixcado!");
     }
 }
