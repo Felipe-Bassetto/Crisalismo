@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class FishingManager : MonoBehaviour
+public class AdoletaManager : MonoBehaviour
 {
+    [Header("GameObject")]
+    private GameManager gm;
 
     [SerializeField] private float maxTimeAction = 2f;
     public float currentTimeAction;
@@ -23,9 +25,11 @@ public class FishingManager : MonoBehaviour
 
     private void Start()
     {
-        GameObject canvas = GameObject.Find("Canvas");
-        Transform seta = canvas.transform.Find("MinigameSetas/Direção");
-        Transform pontos = canvas.transform.Find("MinigameSetas/Points");
+        gm = FindFirstObjectByType<GameManager>();
+        gm.canvasAdoleta.SetActive(true);
+        GameObject canvas = gm.canvasAdoleta;
+        Transform seta = canvas.transform.Find("Direção");
+        Transform pontos = canvas.transform.Find("Points");
 
         GameObject objSeta = seta.gameObject;
         GameObject objPoint = pontos.gameObject;

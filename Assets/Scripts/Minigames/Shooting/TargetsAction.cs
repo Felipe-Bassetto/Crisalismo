@@ -6,7 +6,9 @@ public class TargetsAction : MonoBehaviour
 {
     [Header("Variáveis")]
     public float speed = 5f;
-    private bool vertical;
+    public int position;
+    private float seconds = 2f;
+    private float counterSeconds = 0f;
 
     [Header("Scripts")]
     public ShootingManager sm;
@@ -15,20 +17,22 @@ public class TargetsAction : MonoBehaviour
     void Start()
     {
         sm = FindFirstObjectByType<ShootingManager>();
-        SetDirection(sm.lastTargetDir);
+        SetDirection(sm.atualPos);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(vertical)
+        counterSeconds += Time.deltaTime;
+
+        if(counterSeconds >= seconds)
         {
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
+            Destroy(gameObject);
         }
-        else
-        {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
-        }
+    }
+
+    void OnDestroy()
+    {
+        sm.AddListPos(position);
     }
 
     private void OnBecameInvisible()
@@ -36,8 +40,8 @@ public class TargetsAction : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetDirection(bool dir)
+    public void SetDirection(int pos)
     {
-        vertical = dir;
+        position = pos;
     }
 }
