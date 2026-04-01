@@ -10,6 +10,8 @@ public class ShootingManager : MonoBehaviour
     public Vector3[] arrPositions;
 
     [Header("Variáveis")]
+    public bool lastTargetDir;
+
     private bool canInstantiate = true;
 
     // Start is called before the first frame update
@@ -37,10 +39,23 @@ public class ShootingManager : MonoBehaviour
     {
         while(canInstantiate)
         {
-            foreach(Vector3 pos in arrPositions)
+            foreach (Vector3 pos in arrPositions)
             {
-                int index = Random.Range(0,1);
+                int index = Random.Range(0,2);
+
+                if (pos.x > 1000f) // Define a direção de navegação do alvo
+                {
+                    lastTargetDir = false;
+                }
+                else
+                {
+                    lastTargetDir = true;
+                }
+
                 Instantiate(arrTargets[index], pos, Quaternion.identity);
+
+                
+
                 yield return new WaitForSeconds(0.5f);
             }
         }

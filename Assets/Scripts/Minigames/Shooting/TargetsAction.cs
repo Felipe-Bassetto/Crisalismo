@@ -14,7 +14,8 @@ public class TargetsAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        sm = FindFirstObjectByType<ShootingManager>();
+        SetDirection(sm.lastTargetDir);
     }
 
     // Update is called once per frame
