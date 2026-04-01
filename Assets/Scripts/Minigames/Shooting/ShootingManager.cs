@@ -43,7 +43,7 @@ public class ShootingManager : MonoBehaviour
             {
                 int index = Random.Range(0,2);
 
-                if (pos.x > 1000f) // Define a direção de navegação do alvo
+                if (pos.x >= 20) // Define a direção de navegação do alvo
                 {
                     lastTargetDir = false;
                 }

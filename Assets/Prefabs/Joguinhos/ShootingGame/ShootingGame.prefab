@@ -99,13 +99,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvaShooting: {fileID: 0}
   arrTargets:
-  - {fileID: 5544311280173310325, guid: 1cf3c0739d61e85499ec864bade26381, type: 3}
-  - {fileID: 6135400556997835746, guid: 9831a1ccefde4424faaebda2e22fd0d1, type: 3}
+  - {fileID: 2086653032830883622, guid: 1cf3c0739d61e85499ec864bade26381, type: 3}
+  - {fileID: 5348138429900418756, guid: 9831a1ccefde4424faaebda2e22fd0d1, type: 3}
   arrPositions:
-  - {x: 20, y: 1.5, z: 3}
-  - {x: 20, y: -1.5, z: 3}
-  - {x: 0, y: 5, z: 3}
-  - {x: 0, y: 5, z: 3}
+  - {x: 20, y: 8, z: 60}
+  - {x: 20, y: -8, z: 60}
+  - {x: 10, y: 12, z: 60}
+  - {x: 0, y: 12, z: 60}
+  - {x: -10, y: 12, z: 60}
   lastTargetDir: 0
 --- !u!65 &633034229270056475
 BoxCollider:
