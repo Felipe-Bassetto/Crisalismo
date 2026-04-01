@@ -6,7 +6,10 @@ public class GameManager : MonoBehaviour
 {
     [Header("Variáveis Minigames")]
     public GameObject[] arrPrefabsMinigames;
-    public GameObject canvasMinigame;
+    public GameObject canvasAdoleta;
+    public GameObject canvasShooting;
+    public GameObject Camera1;
+    public GameObject Camera2;
 
     private int indexMinigame;
 
@@ -24,8 +27,12 @@ public class GameManager : MonoBehaviour
 
     public void OpenMinigame()
     {
+        if(indexMinigame == 1)
+        {
+            Camera1.SetActive(false);
+            Camera2.SetActive(true);
+        }
         Instantiate(arrPrefabsMinigames[indexMinigame], new Vector3(100, 100, 0), Quaternion.identity);
-        canvasMinigame.SetActive(true);
     }
 
     public void SetMinigame(int index)

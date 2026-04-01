@@ -1,22 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShootingManager : MonoBehaviour
 {
     [Header("GameObjects")]
     public GameObject canvaShooting;
-    public GameObject[] arrTargets;
-    public Vector3[] arrPositions;
+    public GameObject target;
+    public GameManager gm;
+
 
     [Header("Variáveis")]
-    public bool lastTargetDir;
-
+    public int atualPos;
+    public Vector3[] arrPositions;
+    public List<int> arrRemainingPos;
+    
+    private int points = 0;
+    private TextMeshProUGUI pointUI;
     private bool canInstantiate = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = FindFirstObjectByType<GameManager>();
+        GameObject canvas = gm.canvasShooting;
+        canvas.SetActive(true);
+        Transform pontos = canvas.transform.Find("Points");
+        pointUI = pontos.gameObject.GetComponent<TextMeshProUGUI>();
+
         StartCoroutine(GerarAlvos());
     }
 
@@ -30,6 +42,8 @@ public class ShootingManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
+                points++;
+                pointUI.text = "" + points;
                 Destroy(hit.transform.gameObject);
             }
         }
@@ -39,25 +53,22 @@ public class ShootingManager : MonoBehaviour
     {
         while(canInstantiate)
         {
-            foreach (Vector3 pos in arrPositions)
-            {
-                int index = Random.Range(0,2);
+            int pos = Random.Range(0,arrRemainingPos.Count);
 
-                if (pos.x >= 20) // Define a direção de navegação do alvo
-                {
-                    lastTargetDir = false;
-                }
-                else
-                {
-                    lastTargetDir = true;
-                }
+            int index = arrRemainingPos[pos];
 
-                Instantiate(arrTargets[index], pos, Quaternion.identity);
+            atualPos = index;
 
-                
+            GameObject obj = Instantiate(target, arrPositions[index], Quaternion.Euler(-90f,0,0));
 
-                yield return new WaitForSeconds(0.5f);
-            }
+            arrRemainingPos.Remove(index);
+
+            yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void AddListPos(int pos)
+    {
+        arrRemainingPos.Add(pos);
     }
 }
