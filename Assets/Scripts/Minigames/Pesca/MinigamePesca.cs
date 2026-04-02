@@ -1,12 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 public class MinigamePesca : MonoBehaviour
 {
     [Header("Referências de UI")]
     public RectTransform BarraPlayer;
     public RectTransform peixeIcon;
-    public RectTransform moldura;
     public Slider sliderProgresso;
+    public TMP_Text pointUI;
+
+    [Header("Pontuação")]
+    private int points = 0;
+
+    [Header("Configurações de Limite")]
+    private float limiteTopo = 230f;
+    private float limiteBase = -280f;
 
     [Header("Configurações da Barra Player")]
     public float gravidade = 500f;
@@ -15,21 +24,17 @@ public class MinigamePesca : MonoBehaviour
 
     [Header("Configurações do Peixe")]
     public float velocidadePeixe = 3f;
-    private float tempoParaTrocarDestino = 0.5f;
+    private float tempoParaTrocarDestino = 0f;
     private float destinoYPeixe;
 
     [Header("Configurações do Jogo")]
     public float velocidadeGanho = 0.2f;
     public float velocidadePerda = 0.15f;
 
-    [Header("Configurações de Limite")]
-    private float limiteTopo = 240f;
-    private float limiteBase = -290f;
-
     void Start()
     {
-        sliderProgresso.value = 0;
-        destinoYPeixe = peixeIcon.anchoredPosition.y;
+        pointUI.text = "0";
+        ReiniciarMinigame();
     }
 
     void Update()
@@ -42,22 +47,12 @@ public class MinigamePesca : MonoBehaviour
     void ControleBarraPlayer()
     {
         if (Input.GetMouseButton(0))
-        {
             velocidadeBarra += forçaImpulso * Time.deltaTime;
-        }
         else
-        {
             velocidadeBarra -= gravidade * Time.deltaTime;
-        }
 
         Vector2 novaPos = BarraPlayer.anchoredPosition;
         novaPos.y += velocidadeBarra * Time.deltaTime;
-
-        float limiteSuperior = (moldura.rect.height / 2) - (BarraPlayer.rect.height / 2);
-        float limiteInferior = -limiteSuperior;
-        novaPos.y = Mathf.Clamp(novaPos.y, limiteInferior, limiteSuperior);
-
-        if (novaPos.y == limiteSuperior || novaPos.y == limiteInferior) velocidadeBarra = 0;
 
         float meioBarra = BarraPlayer.rect.height / 2;
         novaPos.y = Mathf.Clamp(novaPos.y, limiteBase + meioBarra, limiteTopo - meioBarra);
@@ -73,9 +68,8 @@ public class MinigamePesca : MonoBehaviour
         tempoParaTrocarDestino -= Time.deltaTime;
         if (tempoParaTrocarDestino <= 0)
         {
-            float margem = 20f;
-            float limiteY = (moldura.rect.height / 2) - margem;
-            destinoYPeixe = Random.Range(-limiteY, limiteY);
+            float meioPeixe = peixeIcon.rect.height / 2;
+            destinoYPeixe = Random.Range(limiteBase + meioPeixe, limiteTopo - meioPeixe);
             tempoParaTrocarDestino = Random.Range(0.5f, 2f);
         }
 
@@ -94,14 +88,35 @@ public class MinigamePesca : MonoBehaviour
         float areaDeCaptura = BarraPlayer.rect.height / 2;
 
         if (distancia < areaDeCaptura)
-        {
             sliderProgresso.value += velocidadeGanho * Time.deltaTime;
-        }
         else
-        {
             sliderProgresso.value -= velocidadePerda * Time.deltaTime;
-        }
 
-        if (sliderProgresso.value >= 1) Debug.Log("Peixe peixcado!");
+        if (sliderProgresso.value >= 1) 
+        {
+            GanharPontoERecomecar();
+        }
+    }
+
+    void GanharPontoERecomecar()
+    {
+        points++;
+        pointUI.text = "" + points;
+        ReiniciarMinigame();
+    }
+
+    void ReiniciarMinigame()
+    {
+        sliderProgresso.value = 0;
+        velocidadeBarra = 0;
+
+        float meioPeixe = peixeIcon.rect.height / 2;
+        float novaPosPeixe = Random.Range(limiteBase + meioPeixe, limiteTopo - meioPeixe);
+        peixeIcon.anchoredPosition = new Vector2(peixeIcon.anchoredPosition.x, novaPosPeixe);
+        destinoYPeixe = novaPosPeixe;
+
+        float meioBarra = BarraPlayer.rect.height / 2;
+        float novaPosBarra = Random.Range(limiteBase + meioBarra, limiteTopo - meioBarra);
+        BarraPlayer.anchoredPosition = new Vector2(BarraPlayer.anchoredPosition.x, novaPosBarra);
     }
 }
