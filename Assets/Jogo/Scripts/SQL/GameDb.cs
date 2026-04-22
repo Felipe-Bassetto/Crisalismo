@@ -23,22 +23,19 @@ public class GameDatabase : MonoBehaviour
 
     }
 
-    // ---------------- CONFIGURA��ES ----------------
-    /*ublic void SalvarConfiguracoes(float volumeMusica, bool telaCheia) // mudar para update
+    // ---------------- SAVE ----------------
+    public Save CarregarSave()
     {
-        db.DeleteAll<Configuracoes>(); // garante s� 1 linha
-        db.Insert(new Configuracoes
-        {
-            VolumeMusica = volumeMusica,
-            TelaCheia = telaCheia ? 1 : 0
-        });
+        return db.Table<Save>().FirstOrDefault();
     }
 
-    public Configuracoes CarregarConfiguracoes()
+    public void AtualizarSave(int id, float volMusic, bool fullScreen, int tempo)
     {
-        return db.Table<Configuracoes>().FirstOrDefault();
+        db.Execute("UPDATE Save SET VolMusic = ?, FullScreen = ?, TempoDeJogo = ?   WHERE Id = ?", volMusic, fullScreen ? 1 : 0 , tempo, id);
+
     }
 
+    /*
     // ---------------- PROGRESSO ----------------
     public void SalvarProgresso(int nivel,  int id)
     {
@@ -161,14 +158,14 @@ public class Progresso
     public int Fase { get; set; }
 }
 
-public class Receitas
+public class Marcos
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
-    public string Item { get; set; }
-    public string Comp { get; set; }
-    public string Comp_2 { get; set; }
-    public string Comp_3 { get; set; }
+    public int Id_Cria { get; set; }
+    public int Marco { get; set; }
+    public int Brincadeira { get; set; }
+    public int Pontos { get; set; }
 }
 
 
