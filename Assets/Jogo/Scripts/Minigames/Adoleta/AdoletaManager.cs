@@ -26,8 +26,7 @@ public class AdoletaManager : MonoBehaviour
     private void Start()
     {
         gm = FindFirstObjectByType<GameManager>();
-        gm.canvasAdoleta.SetActive(true);
-        GameObject canvas = gm.canvasAdoleta;
+        GameObject canvas = gm.arrCanvasMinigames[gm.indexMinigame];
         Transform seta = canvas.transform.Find("Direção");
         Transform pontos = canvas.transform.Find("Points");
 

@@ -6,15 +6,17 @@ public class GameManager : MonoBehaviour
 {
     [Header("Variáveis Minigames")]
     public GameObject[] arrPrefabsMinigames;
-    public GameObject canvasAdoleta;
-    public GameObject canvasShooting;
     public GameObject Camera1;
     public GameObject Camera2;
 
-    private int indexMinigame;
+    public int indexMinigame;
 
     [Header("Crianças")]
     public GameObject[] arrKidsFriends;
+
+    [Header("Canvas")]
+    public GameObject[] arrCanvasMinigames;
+    [SerializeField] private GameObject canvasFriends;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +32,13 @@ public class GameManager : MonoBehaviour
 
     public void OpenMinigame()
     {
-        if(indexMinigame == 1)
-        {
-            Camera1.SetActive(false);
-            Camera2.SetActive(true);
-        }
+        canvasFriends.SetActive(true);
+    }
+
+    public void ChooseFriend(GameObject friend)
+    {
+        canvasFriends.SetActive(false);
+        arrCanvasMinigames[indexMinigame].SetActive(true);
         Instantiate(arrPrefabsMinigames[indexMinigame], new Vector3(100, 100, 0), Quaternion.identity);
     }
 

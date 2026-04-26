@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -17,7 +18,12 @@ public class CanvasManager : MonoBehaviour
         {
             var variables = Variables.Object(obj);
             int index = (int)variables.Get("index");
-            Instantiate(prefabButtons[index], buttonsChooseFriend);
+            GameObject btnObj = Instantiate(prefabButtons[index], buttonsChooseFriend);
+            Button btn = btnObj.GetComponent<Button>();
+
+            Debug.Log(btn);
+
+            btn.onClick.AddListener(() => gm.ChooseFriend(btnObj));
         }
     }
 

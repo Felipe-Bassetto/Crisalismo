@@ -24,7 +24,7 @@ public class ShootingManager : MonoBehaviour
     void Start()
     {
         gm = FindFirstObjectByType<GameManager>();
-        GameObject canvas = gm.canvasShooting;
+        GameObject canvas = gm.arrCanvasMinigames[gm.indexMinigame];
         canvas.SetActive(true);
         Transform pontos = canvas.transform.Find("Points");
         pointUI = pontos.gameObject.GetComponent<TextMeshProUGUI>();
