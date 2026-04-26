@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5551169282694325283}
   - component: {fileID: 50651354022737688}
   - component: {fileID: 6583016595899714243}
-  - component: {fileID: 1349038581014766127}
+  - component: {fileID: 8899549827142089875}
   m_Layer: 0
-  m_Name: Navio
+  m_Name: Fishing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74abf3cd03ccd6f40aff608c3dfdd972, type: 2}
+  - {fileID: 2100000, guid: 5de53d92ab300154a87a04b5f39c2ed3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1349038581014766127
+--- !u!114 &8899549827142089875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6884455302007082816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c671e81395b8a468d199ce9881f5e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 05a8e92e2eaad2d4fb134eba07009804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexContruction: 0
+  BarraPlayer: {fileID: 0}
+  peixeIcon: {fileID: 0}
+  sliderProgresso: {fileID: 0}
+  pointUI: {fileID: 0}
+  gravidade: 500
+  "for\xE7aImpulso": 700
+  velocidadePeixe: 1.6
+  velocidadeGanho: 0.2
+  velocidadePerda: 0.15
