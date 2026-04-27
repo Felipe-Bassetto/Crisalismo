@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MovimentKids : MonoBehaviour
 {
@@ -37,6 +38,10 @@ public class MovimentKids : MonoBehaviour
 
         if (canWalk)
         {
+            Vector3 direction = destine - transform.position;
+            Quaternion rot = Quaternion.LookRotation(direction);
+            transform.rotation = rot;
+            gameObject.transform.rotation = rot;
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, destine, velocity * Time.deltaTime);
             if (gameObject.transform.position == destine)
             {
