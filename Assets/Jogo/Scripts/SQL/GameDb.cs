@@ -47,6 +47,12 @@ public class GameDatabase : MonoBehaviour
         return db.Table<Interacoes>().Where(i => i.NivelAmizade == nivelAmizade && i.IdCrianca == idCria).OrderBy(i => i.NumeroFala).ToList();
     }
 
+    // ---------------- MARCOS ----------------
+    public Marcos CarregarMarco(int idCria, int idMarco, int idBrincadeira)
+    {
+        return db.Table<Marcos>().Where(m => m.IdCrianca == idCria && m.Marco == idMarco && m.Brincadeira == idBrincadeira).FirstOrDefault();
+    }
+
     /*
     public void AtualizarSave(int id, float volMusic, bool fullScreen, int tempo)
     {
@@ -186,7 +192,10 @@ public class Marcos
     public int IdCrianca { get; set; }
     public int Marco { get; set; }
     public int Brincadeira { get; set; }
+    public string NomeBrincadeira { get; set; }
+    public string MetodoVitoria { get; set; }
     public int Pontos { get; set; }
+    public int Contador { get; set; }
 }
 
 public class Interacoes

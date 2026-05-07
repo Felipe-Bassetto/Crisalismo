@@ -5,15 +5,16 @@ using TMPro;
 
 public class AdoletaManager : MonoBehaviour
 {
-    [SerializeField] private float maxTimeAction = 2f;
+    [Header("Variaveis")]
     public float currentTimeAction;
-
-    private bool canClick;
-
-    private int currentInput;
-
+    [SerializeField] private float maxTimeAction = 2f;
     [SerializeField] private int points = 0;
 
+    private bool canClick;
+    private int currentInput;
+    
+
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI TMP;
     [SerializeField] private TextMeshProUGUI pointUI;
 
