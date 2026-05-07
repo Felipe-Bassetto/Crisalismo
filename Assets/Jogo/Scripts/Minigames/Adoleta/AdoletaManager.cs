@@ -5,14 +5,8 @@ using TMPro;
 
 public class AdoletaManager : MonoBehaviour
 {
-    [Header("GameObject")]
-    private GameManager gm;
-
     [SerializeField] private float maxTimeAction = 2f;
     public float currentTimeAction;
-
-    [SerializeField] private float maxTimeFishing = 10f;
-    private float currentTimeFishing;
 
     private bool canClick;
 
@@ -23,8 +17,18 @@ public class AdoletaManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TMP;
     [SerializeField] private TextMeshProUGUI pointUI;
 
+    [Header("Scripts")]
+    private GameManager gm;
+
+    [Header("Timer")]
+    [SerializeField] private float maxTime;
+
+    private float counterTime = 0;
+
+
     private void Start()
     {
+
         gm = FindFirstObjectByType<GameManager>();
         GameObject canvas = gm.arrCanvasMinigames[gm.indexMinigame];
         Transform seta = canvas.transform.Find("Direção");
@@ -37,7 +41,6 @@ public class AdoletaManager : MonoBehaviour
 
         currentInput = Random.Range(0, 4);
         currentTimeAction = maxTimeAction;
-        currentTimeFishing = maxTimeFishing;
         canClick = true;
 
         switch (currentInput)
@@ -61,8 +64,16 @@ public class AdoletaManager : MonoBehaviour
 
     private void Update()
     {
-        runActionTime();
-        runFishingTime();
+        if (counterTime >= maxTime)
+        {
+            gm.CloseMinigame();
+        }
+        else
+        {
+            counterTime += Time.deltaTime;
+            runActionTime();
+            runFishingTime();
+        }
     }
 
     private void runActionTime()
@@ -79,9 +90,7 @@ public class AdoletaManager : MonoBehaviour
 
     private void runFishingTime()
     {
-        currentTimeFishing -= Time.deltaTime;
-
-        if (currentTimeFishing > 0 && canClick)
+        if (canClick)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -134,7 +143,6 @@ public class AdoletaManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         currentInput = Random.Range(0, 4);
-        Debug.Log(currentInput);
         currentTimeAction = maxTimeAction;
 
         switch (currentInput)

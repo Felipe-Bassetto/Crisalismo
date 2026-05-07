@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1349038581014766127}
   m_Layer: 0
   m_Name: Palco
-  m_TagString: Untagged
+  m_TagString: Construcao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

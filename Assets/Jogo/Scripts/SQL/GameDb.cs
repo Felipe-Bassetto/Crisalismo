@@ -13,7 +13,7 @@ public class GameDatabase : MonoBehaviour
         string dbPath = Path.Combine(Application.persistentDataPath, "savegame.db");
         if(!File.Exists(dbPath))
         {
-            string origemDb = Application.dataPath + "/Banco/savegame.db";
+            string origemDb = Application.dataPath + "/Jogo/Banco/savegame.db";
             string destinoDb = dbPath;
             File.Copy(origemDb, destinoDb);
         }
@@ -35,7 +35,26 @@ public class GameDatabase : MonoBehaviour
 
     }
 
+    // ---------------- RELACIONAMENTOS ----------------
+    public Relacionamentos CarregarRelacionamentos(int idCria)
+    {
+        return db.Table<Relacionamentos>().Where(r => r.IdSave == 0 && r.IdCrianca == idCria).FirstOrDefault();
+    }
+
+    // ---------------- INTERACOES ----------------
+    public List<Interacoes> CarregarInteracoes(int idCria, int nivelAmizade)
+    {
+        return db.Table<Interacoes>().Where(i => i.NivelAmizade == nivelAmizade && i.IdCrianca == idCria).OrderBy(i => i.NumeroFala).ToList();
+    }
+
     /*
+    public void AtualizarSave(int id, float volMusic, bool fullScreen, int tempo)
+    {
+        db.Execute("UPDATE Save SET VolMusic = ?, FullScreen = ?, TempoDeJogo = ?   WHERE Id = ?", volMusic, fullScreen ? 1 : 0, tempo, id);
+
+    }
+
+    
     // ---------------- PROGRESSO ----------------
     public void SalvarProgresso(int nivel,  int id)
     {
@@ -121,7 +140,9 @@ public class Relacionamentos
     public int Id { get; set; }
     public int IdSave { get; set; }
     public int IdCrianca { get; set; } 
-    public int NivelAmizade { get; set; } 
+    public int NivelAmizade { get; set; }
+    public int Conhecida { get; set; } // 0 ou 1
+    public string NomeCrianca { get; set; }
 }
 
 public class Recursos
@@ -162,10 +183,19 @@ public class Marcos
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
-    public int Id_Cria { get; set; }
+    public int IdCrianca { get; set; }
     public int Marco { get; set; }
     public int Brincadeira { get; set; }
     public int Pontos { get; set; }
 }
 
+public class Interacoes
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+    public int IdCrianca { get; set; }
+    public int NivelAmizade { get; set; }
+    public int NumeroFala { get; set; }
+    public string Fala { get; set; }
+}
 

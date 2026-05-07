@@ -18,7 +18,7 @@ public class CanvasManager : MonoBehaviour
         {
             var variables = Variables.Object(obj);
             int index = (int)variables.Get("index");
-            GameObject btnObj = Instantiate(prefabButtons[index], buttonsChooseFriend);
+            GameObject btnObj = Instantiate(prefabButtons[index-1], buttonsChooseFriend);
             Button btn = btnObj.GetComponent<Button>();
 
             Debug.Log(btn);
@@ -27,9 +27,8 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void VisibilityCanvas(GameObject obj, bool visibility)
     {
-        
+        obj.SetActive(visibility);
     }
 }

@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ActivedConstruction : MonoBehaviour
 {
     [Header("Variáveis minigame")]
+    public int indexContruction;
 
     private GameManager GM;
-    public int indexContruction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,4 +26,6 @@ public class ActivedConstruction : MonoBehaviour
         GM.SetMinigame(indexContruction);
         GM.OpenMinigame();
     }
+
+    
 }

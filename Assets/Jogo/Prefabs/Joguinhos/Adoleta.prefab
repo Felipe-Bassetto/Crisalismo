@@ -124,3 +124,4 @@ MonoBehaviour:
   points: 0
   TMP: {fileID: 0}
   pointUI: {fileID: 0}
+  maxTime: 30
