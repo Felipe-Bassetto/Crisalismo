@@ -6,28 +6,24 @@ using Unity.VisualScripting;
 public class KidsInteraction : MonoBehaviour
 {
     [Header("Scripts")]
-    [SerializeField] private GameDatabase db;
+    [SerializeField] private CanvasManager cm;
 
     [Header("Crianca")]
     private int index;
-    private Relacionamentos kidLevel;
-    private List<Interacoes> kidInteraction;
+
+    [Header("GameObjects")]
+    [SerializeField] private Transform dialogUI;
 
     private void Start()
     {
-        db = FindFirstObjectByType<GameDatabase>();
+        cm = FindFirstObjectByType<CanvasManager>();
         index = (int)Variables.Object(gameObject).Get("index");
+        dialogUI = GameObject.Find("Canvas/InGame").transform.Find("Dialog");
     }
 
+    
     void OnMouseDown()
     {
-        kidLevel = db.CarregarRelacionamentos(index);
-        kidInteraction = db.CarregarInteracoes(index, kidLevel.NivelAmizade);
-
-        foreach (Interacoes i in kidInteraction)
-        {
-            Debug.Log(i.Fala);
-        }
-
+        cm.VerifyTexts(index);
     }
 }

@@ -93,30 +93,6 @@ public class GameDatabase : MonoBehaviour
     public List<Colecao> CarregarArtColec()
     {
         return db.Table<Colecao>().ToList();
-    }
-
-    // ---------------- CLIENTE ----------------
-
-    public Clientes CarregarCliente(int idNum)
-    {
-        return db.Table<Clientes>().Where(c => c.Id == idNum).FirstOrDefault();
-    }
-
-    public List<Clientes> CarregarClientesColec()
-    {
-        return db.Table<Clientes>().ToList();
-    }
-
-    public void AtualizarCliente(int idNum, bool conhecido)
-    {
-        db.Execute("UPDATE Clientes SET Conhecido = ? WHERE Id = ?", conhecido ? 1: 0, idNum);
-    }
-
-    // ---------------- Fase ----------------
-
-    public Fases CarregarFase(int idNum)
-    {
-        return db.Table<Fases>().Where(f=> f.Id == idNum).FirstOrDefault();
     }*/
 
     void OnDestroy() //Passar para obj dontDestroy
