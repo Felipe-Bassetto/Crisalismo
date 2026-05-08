@@ -10,65 +10,104 @@ public class ShootingManager : MonoBehaviour
     public GameObject target;
     public GameManager gm;
 
-
     [Header("Variáveis")]
-    public int atualPos;
-    public Vector3[] arrPositions;
-    public List<int> arrRemainingPos;
-    
+    private List<int> listIndex;
+    private GameObject[] listButtonsInative;
     private int points = 0;
     private TextMeshProUGUI pointUI;
     private bool canInstantiate = true;
 
-    // Start is called before the first frame update
+    [Header("Timer")]
+    [SerializeField] private float maxTime;
+
+    public float counterTime = 0;
+
+
     void Start()
     {
         gm = FindFirstObjectByType<GameManager>();
+
         GameObject canvas = gm.arrCanvasMinigames[gm.indexMinigame];
         canvas.SetActive(true);
+
         Transform pontos = canvas.transform.Find("Points");
-        pointUI = pontos.gameObject.GetComponent<TextMeshProUGUI>();
+        pointUI = pontos.GetComponent<TextMeshProUGUI>();
+
+        listButtonsInative = gm.listButtonsBallons;
+
+        listIndex = new List<int>(gm.listIndexBallons);
+
+        foreach (GameObject obj in listButtonsInative)
+        {
+            TargetsAction ta = obj.GetComponent<TargetsAction>();
+            ta.FindManager();
+        }
 
         StartCoroutine(GerarAlvos());
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (counterTime >= maxTime)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            gm.CloseMinigame();
+            listIndex.Clear();
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            foreach(GameObject obj in listButtonsInative)
             {
-                points++;
-                pointUI.text = "" + points;
-                Destroy(hit.transform.gameObject);
+                obj.SetActive(false);
             }
+
+            Destroy(gameObject);
         }
+        else counterTime += Time.deltaTime;
     }
 
     public IEnumerator GerarAlvos()
     {
-        while(canInstantiate)
+        while (canInstantiate)
         {
-            int pos = Random.Range(0,arrRemainingPos.Count);
+            if (listIndex.Count <= 0)
+            {
+                yield return null;
+                continue;
+            }
 
-            int index = arrRemainingPos[pos];
+            int randomIndex = Random.Range(0, listIndex.Count);
 
-            atualPos = index;
+            int targetIndex = listIndex[randomIndex];
 
-            GameObject obj = Instantiate(target, arrPositions[index], Quaternion.Euler(-90f,0,0));
+            GameObject obj = listButtonsInative[targetIndex];
 
-            arrRemainingPos.Remove(index);
+            if (obj.activeSelf)
+            {
+                yield return null;
+                continue;
+            }
+
+            obj.SetActive(true);
+
+            TargetsAction ta = obj.GetComponent<TargetsAction>();
+
+            ta.ActiveCounter(targetIndex);
+
+            listIndex.Remove(targetIndex);
 
             yield return new WaitForSeconds(0.5f);
         }
     }
 
-    public void AddListPos(int pos)
+    public void AddListPos(int index)
     {
-        arrRemainingPos.Add(pos);
+        if (!listIndex.Contains(index))
+        {
+            listIndex.Add(index);
+        }
+    }
+
+    public void UpdatePoint()
+    {
+        points++;
+        pointUI.text = points.ToString();
     }
 }

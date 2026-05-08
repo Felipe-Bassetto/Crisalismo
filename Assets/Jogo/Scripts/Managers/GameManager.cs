@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Canvas")]
     public GameObject[] arrCanvasMinigames;
+    public GameObject[] listButtonsBallons;
     [SerializeField] private GameObject canvasFriends;
     [SerializeField] private GameObject inGameObj;
     [SerializeField] private TextMeshProUGUI counterTimeUI;
@@ -36,6 +37,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Scripts")]
     [SerializeField] private CanvasManager cm;
+
+    [Header("Variaveis")]
+    public List<int> listIndexBallons;
 
     // Start is called before the first frame update
     void Start()
@@ -86,7 +90,7 @@ public class GameManager : MonoBehaviour
     IEnumerator TimeStartMinigame()
     {
         counterTimeUI.enabled = true;
-
+        tempo = 3;
         textoContagem = "" + tempo;
         for (int i = 0; i < 4; i++)
         {

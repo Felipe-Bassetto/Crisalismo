@@ -5,43 +5,54 @@ using UnityEngine;
 public class TargetsAction : MonoBehaviour
 {
     [Header("Variáveis")]
-    public float speed = 5f;
-    public int position;
     private float seconds = 2f;
     private float counterSeconds = 0f;
+    private bool canCount = false;
+    private int indexList;
 
     [Header("Scripts")]
     public ShootingManager sm;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        sm = FindFirstObjectByType<ShootingManager>();
-        SetDirection(sm.atualPos);
-    }
-
+    
     void Update()
     {
-        counterSeconds += Time.deltaTime;
-
-        if(counterSeconds >= seconds)
+        if (canCount)
         {
-            Destroy(gameObject);
+            if (counterSeconds >= seconds)
+            {
+                sm.AddListPos(indexList);
+
+                gameObject.SetActive(false);
+
+                canCount = false;
+            }
+            else
+            {
+                counterSeconds += Time.deltaTime;
+            }
         }
     }
 
-    void OnDestroy()
+    public void addPoint()
     {
-        sm.AddListPos(position);
+        sm.UpdatePoint();
+
+        sm.AddListPos(indexList);
+
+        gameObject.SetActive(false);
+
+        canCount = false;
     }
 
-    private void OnBecameInvisible()
+    public void ActiveCounter(int index)
     {
-        Destroy(gameObject);
+        canCount = true;
+        counterSeconds = 0f;
+        indexList = index;
     }
 
-    public void SetDirection(int pos)
+    public void FindManager()
     {
-        position = pos;
+        sm = FindFirstObjectByType<ShootingManager>();
     }
 }
