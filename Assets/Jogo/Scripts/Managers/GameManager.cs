@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Scripts")]
     [SerializeField] private CanvasManager cm;
+    [SerializeField] private FriendShipValidation friendshipValidation;
 
     [Header("Variaveis")]
     public List<int> listIndexBallons;
@@ -72,11 +73,15 @@ public class GameManager : MonoBehaviour
         canvasFriends.SetActive(true);
     }
 
-    public void CloseMinigame()
+    public void CloseMinigame(int pointsMade, int enemyPointsMade)
     {
+        pointsEnemy = enemyPointsMade;
+        pointsMinigame = pointsMade;
         cm.VisibilityCanvas(inGameObj, true);
 
         cm.VisibilityCanvas(arrCanvasMinigames[indexMinigame], false);
+
+        friendshipValidation.Validate();
     }
 
     public void ChooseFriend(GameObject friend)

@@ -9,9 +9,11 @@ public class MinigamePesca : MonoBehaviour
     public RectTransform peixeIcon;
     public Slider sliderProgresso;
     public TMP_Text pointUI;
+    private TextMeshProUGUI pointUIEnemy;
 
     [Header("Pontuação")]
     private int points = 0;
+    private int pointsEnemy = 0;
 
     [Header("Configurações de Limite")]
     private float limiteTopo = 230f;
@@ -36,8 +38,10 @@ public class MinigamePesca : MonoBehaviour
 
     [Header("Timer")]
     [SerializeField] private float maxTime;
-
     public float counterTime = 0;
+
+    private float counterTimeEnemy = 0f;
+    private float maxTimeEnemy = 1f;
 
     void Start()
     {
@@ -47,6 +51,9 @@ public class MinigamePesca : MonoBehaviour
 
         Transform pontos = canvas.transform.Find("Points");
         pointUI = pontos.GetComponent<TMP_Text>();
+
+        Transform pontosEnemy = canvas.transform.Find("PointsEnemy");
+        pointUIEnemy = pontosEnemy.GetComponent<TextMeshProUGUI>();
 
         Transform barra = canvas.transform.Find("BarraPlayer");
         BarraPlayer = barra.GetComponent<RectTransform>();
@@ -58,6 +65,7 @@ public class MinigamePesca : MonoBehaviour
         sliderProgresso = slider.GetComponent<Slider>();
 
         pointUI.text = "0";
+        pointUIEnemy.text = "0";
 
         ReiniciarMinigame();
     }
@@ -66,10 +74,17 @@ public class MinigamePesca : MonoBehaviour
     {
         if (counterTime >= maxTime)
         {
-            gm.CloseMinigame();
+            gm.CloseMinigame(points, pointsEnemy);
             Destroy(gameObject);
         }
         else counterTime += Time.deltaTime;
+
+        if (counterTimeEnemy >= maxTimeEnemy)
+        {
+            addPointEnemy();
+            counterTimeEnemy = 0;
+        }
+        else counterTimeEnemy += Time.deltaTime;
 
         ControleBarraPlayer();
         InteligenciaPeixe();
@@ -150,5 +165,11 @@ public class MinigamePesca : MonoBehaviour
         float meioBarra = BarraPlayer.rect.height / 2;
         float novaPosBarra = Random.Range(limiteBase + meioBarra, limiteTopo - meioBarra);
         BarraPlayer.anchoredPosition = new Vector2(BarraPlayer.anchoredPosition.x, novaPosBarra);
+    }
+
+    private void addPointEnemy()
+    {
+        pointsEnemy++;
+        pointUIEnemy.text = pointsEnemy.ToString();
     }
 }

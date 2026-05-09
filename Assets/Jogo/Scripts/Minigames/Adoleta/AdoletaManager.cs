@@ -10,6 +10,7 @@ public class AdoletaManager : MonoBehaviour
     [SerializeField] private float maxTimeAction = 2f;
     [SerializeField] private int points = 0;
 
+    private int pointsEnemy = 0;
     private bool canClick;
     private int currentInput;
     
@@ -29,6 +30,7 @@ public class AdoletaManager : MonoBehaviour
 
     private void Start()
     {
+        
 
         gm = FindFirstObjectByType<GameManager>();
         GameObject canvas = gm.arrCanvasMinigames[gm.indexMinigame];
@@ -39,6 +41,8 @@ public class AdoletaManager : MonoBehaviour
         GameObject objPoint = pontos.gameObject;
         TMP = objSeta.GetComponent<TextMeshProUGUI>();
         pointUI = objPoint.GetComponent<TextMeshProUGUI>();
+
+        pointUI.text = "0";
 
         currentInput = Random.Range(0, 4);
         currentTimeAction = maxTimeAction;
@@ -67,7 +71,7 @@ public class AdoletaManager : MonoBehaviour
     {
         if (counterTime >= maxTime)
         {
-            gm.CloseMinigame();
+            gm.CloseMinigame(points, pointsEnemy);
         }
         else
         {

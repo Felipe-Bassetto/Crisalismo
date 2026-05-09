@@ -14,13 +14,17 @@ public class ShootingManager : MonoBehaviour
     private List<int> listIndex;
     private GameObject[] listButtonsInative;
     private int points = 0;
+    private int pointsEnemy = 0;
     private TextMeshProUGUI pointUI;
+    private TextMeshProUGUI pointUIEnemy;
     private bool canInstantiate = true;
 
     [Header("Timer")]
     [SerializeField] private float maxTime;
 
-    public float counterTime = 0;
+    private float counterTime = 0f;
+    private float counterTimeEnemy = 0f;
+    private float maxTimeEnemy = 1f;
 
 
     void Start()
@@ -31,6 +35,12 @@ public class ShootingManager : MonoBehaviour
 
         Transform pontos = canvas.transform.Find("Points");
         pointUI = pontos.GetComponent<TextMeshProUGUI>();
+
+        Transform pontosEnemy = canvas.transform.Find("PointsEnemy");
+        pointUIEnemy = pontosEnemy.GetComponent<TextMeshProUGUI>();
+
+        pointUI.text = "0";
+        pointUIEnemy.text = "0";
 
         listButtonsInative = gm.listButtonsBallons;
 
@@ -49,7 +59,7 @@ public class ShootingManager : MonoBehaviour
     {
         if (counterTime >= maxTime)
         {
-            gm.CloseMinigame();
+            gm.CloseMinigame(points, pointsEnemy);
             listIndex.Clear();
 
             foreach(GameObject obj in listButtonsInative)
@@ -60,6 +70,13 @@ public class ShootingManager : MonoBehaviour
             Destroy(gameObject);
         }
         else counterTime += Time.deltaTime;
+
+        if (counterTimeEnemy >= maxTimeEnemy)
+        {
+            addPointEnemy();
+            counterTimeEnemy = 0;
+        }
+        else counterTimeEnemy += Time.deltaTime;
     }
 
     public IEnumerator GerarAlvos()
@@ -108,5 +125,11 @@ public class ShootingManager : MonoBehaviour
     {
         points++;
         pointUI.text = points.ToString();
+    }
+
+    private void addPointEnemy()
+    {
+        pointsEnemy++;
+        pointUIEnemy.text = pointsEnemy.ToString();
     }
 }

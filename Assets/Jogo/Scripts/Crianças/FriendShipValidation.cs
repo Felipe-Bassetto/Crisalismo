@@ -71,6 +71,10 @@ public class FriendShipValidation : MonoBehaviour
 
     public void Pontos()
     {
-        if (gm.pointsMinigame > marco.Pontos) db.AtualizarRelacionamento(relac.Id, relac.NivelAmizade + 1, true);
+        if (gm.pointsMinigame > marco.Pontos)
+        {
+            db.AtualizarRelacionamento(relac.Id, relac.NivelAmizade + 1, true);
+            db.AtualizarMarco(marco.Id, marco.Contador + 1);
+        }
     }
 }

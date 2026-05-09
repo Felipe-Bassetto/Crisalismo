@@ -34,7 +34,7 @@ public class CanvasManager : MonoBehaviour
             var variables = Variables.Object(obj);
             int index = (int)variables.Get("index");
 
-            buttonsFriends[index].SetActive(true);
+            buttonsFriends[index-1].SetActive(true);
         }
     }
 
