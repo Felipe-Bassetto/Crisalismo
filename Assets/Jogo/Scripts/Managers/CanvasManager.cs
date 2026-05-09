@@ -9,7 +9,7 @@ public class CanvasManager : MonoBehaviour
 {
     [Header("Canvas")]
     [SerializeField] private Transform buttonsChooseFriend;
-    [SerializeField] private GameObject[] prefabButtons;
+    [SerializeField] private GameObject[] buttonsFriends;
     [SerializeField] private TextMeshProUGUI dialogKid;
     [SerializeField] private GameObject nextText;
     [SerializeField] private GameObject closeDialog;
@@ -33,12 +33,8 @@ public class CanvasManager : MonoBehaviour
         {
             var variables = Variables.Object(obj);
             int index = (int)variables.Get("index");
-            GameObject btnObj = Instantiate(prefabButtons[index-1], buttonsChooseFriend);
-            Button btn = btnObj.GetComponent<Button>();
 
-            Debug.Log(btn);
-
-            btn.onClick.AddListener(() => gm.ChooseFriend(btnObj));
+            buttonsFriends[index].SetActive(true);
         }
     }
 

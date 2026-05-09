@@ -41,6 +41,11 @@ public class GameDatabase : MonoBehaviour
         return db.Table<Relacionamentos>().Where(r => r.IdSave == 0 && r.IdCrianca == idCria).FirstOrDefault();
     }
 
+    public void AtualizarRelacionamento(int id, int nivelAmizade, bool conhecida)
+    {
+        db.Execute("UPDATE Relacionamentos SET NivelAmizade = ?, Conhecida = ? WHERE Id = ?", nivelAmizade, conhecida, id);
+    }
+
     // ---------------- INTERACOES ----------------
     public List<Interacoes> CarregarInteracoes(int idCria, int nivelAmizade)
     {
@@ -48,9 +53,14 @@ public class GameDatabase : MonoBehaviour
     }
 
     // ---------------- MARCOS ----------------
-    public Marcos CarregarMarco(int idCria, int idMarco, int idBrincadeira)
+    public Marcos CarregarMarco(int idCria, int idMarco)
     {
-        return db.Table<Marcos>().Where(m => m.IdCrianca == idCria && m.Marco == idMarco && m.Brincadeira == idBrincadeira).FirstOrDefault();
+        return db.Table<Marcos>().Where(m => m.IdCrianca == idCria && m.Marco == idMarco).FirstOrDefault();
+    }
+
+    public void AtualizarMarco(int id, int contador)
+    {
+        db.Execute("UPDATE Marcos SET Contador = ? WHERE Id = ?", contador, id);
     }
 
     /*
@@ -165,6 +175,7 @@ public class Marcos
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
+    public int IdSave { get; set; }
     public int IdCrianca { get; set; }
     public int Marco { get; set; }
     public int Brincadeira { get; set; }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Crianças")]
     public GameObject[] arrKidsFriends;
+    public int indexKid;
 
     [Header("Canvas")]
     public GameObject[] arrCanvasMinigames;
@@ -30,7 +31,6 @@ public class GameManager : MonoBehaviour
     private int sparkMult;
     private int sparkCount = 0;
 
-
     [Header("Ciclo")]
     [SerializeField] private float timerCiclo;
     private float counterTime = 0;
@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Variaveis")]
     public List<int> listIndexBallons;
+
+    [Header("Pontuação")]
+    public int pointsMinigame;
+    public int pointsEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +90,8 @@ public class GameManager : MonoBehaviour
     {
         indexMinigame = index;
     }
+
+    public void SetKidIndex(int index) => indexKid = index;
 
     IEnumerator TimeStartMinigame()
     {
