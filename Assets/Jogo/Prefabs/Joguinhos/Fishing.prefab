@@ -127,3 +127,5 @@ MonoBehaviour:
   velocidadePeixe: 1.6
   velocidadeGanho: 0.2
   velocidadePerda: 0.15
+  maxTime: 10
+  counterTime: 0

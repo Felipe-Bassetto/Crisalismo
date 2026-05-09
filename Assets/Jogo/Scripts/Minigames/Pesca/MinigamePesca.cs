@@ -31,14 +31,46 @@ public class MinigamePesca : MonoBehaviour
     public float velocidadeGanho = 0.2f;
     public float velocidadePerda = 0.15f;
 
+    [Header("Scripts")]
+    private GameManager gm;
+
+    [Header("Timer")]
+    [SerializeField] private float maxTime;
+
+    public float counterTime = 0;
+
     void Start()
     {
+        gm = FindFirstObjectByType<GameManager>();
+
+        GameObject canvas = gm.arrCanvasMinigames[gm.indexMinigame];
+
+        Transform pontos = canvas.transform.Find("Points");
+        pointUI = pontos.GetComponent<TMP_Text>();
+
+        Transform barra = canvas.transform.Find("BarraPlayer");
+        BarraPlayer = barra.GetComponent<RectTransform>();
+
+        Transform peixe = canvas.transform.Find("Peixe");
+        peixeIcon = peixe.GetComponent<RectTransform>();
+
+        Transform slider = canvas.transform.Find("Slider");
+        sliderProgresso = slider.GetComponent<Slider>();
+
         pointUI.text = "0";
+
         ReiniciarMinigame();
     }
 
     void Update()
     {
+        if (counterTime >= maxTime)
+        {
+            gm.CloseMinigame();
+            Destroy(gameObject);
+        }
+        else counterTime += Time.deltaTime;
+
         ControleBarraPlayer();
         InteligenciaPeixe();
         VerificarCaptura();
