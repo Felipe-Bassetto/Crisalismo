@@ -29,6 +29,13 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] private Texture[] textures;
 
+    [Header("GameObject")]
+    [SerializeField] private GameObject[] arrEspaços;
+    [SerializeField] private GameObject sparks;
+    [SerializeField] private GameObject btnConstruir;
+    [SerializeField] private GameObject btnFecharConstruir;
+    [SerializeField] private GameObject prancheta;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +71,17 @@ public class CanvasManager : MonoBehaviour
 
             VisibilityCanvas(dialogKid.transform.parent.gameObject,true);
             UpdateTextDialog(kidInteraction[speakIndex].Fala);
+
+            if (kidInteraction.Count - 1 == speakIndex)
+            {
+                nextText.SetActive(false);
+                closeDialog.SetActive(true);
+            }
+            else
+            {
+                nextText.SetActive(true);
+                closeDialog.SetActive(false);
+            }
         }
     }
 
@@ -81,6 +99,36 @@ public class CanvasManager : MonoBehaviour
 
     public void CloseDialogUi()
     {
+        isSpeaking = false;
         VisibilityCanvas(dialogKid.transform.parent.gameObject,false);
+    }
+
+    public void Construir()
+    {
+        foreach(GameObject obj in arrEspaços)
+        {
+            if(obj != null) obj.SetActive(true);
+        }
+
+        sparks.SetActive(false);
+        btnConstruir.SetActive(false);
+        btnFecharConstruir.SetActive(true);
+    }
+
+    public void FecharModoConstrucao()
+    {
+        foreach (GameObject obj in arrEspaços)
+        {
+            if (obj != null) obj.SetActive(false);
+        }
+
+        sparks.SetActive(true);
+        btnConstruir.SetActive(true);
+        btnFecharConstruir.SetActive(false);
+    }
+
+    public void ClosePrancheta()
+    {
+        prancheta.SetActive(false);
     }
 }

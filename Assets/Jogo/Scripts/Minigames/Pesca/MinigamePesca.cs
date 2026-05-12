@@ -41,7 +41,7 @@ public class MinigamePesca : MonoBehaviour
     public float counterTime = 0;
 
     private float counterTimeEnemy = 0f;
-    private float maxTimeEnemy = 1f;
+    private float maxTimeEnemy = 4f;
 
     void Start()
     {

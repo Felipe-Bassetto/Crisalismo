@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TelaInicialManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class TelaInicialManager : MonoBehaviour
         btnOpcoes.SetActive(false);
         btnJogar.SetActive(false);
         btnSair.SetActive(false);
+        nameGame.SetActive(false);
     }
 
     public void FecharOpcoes()
@@ -36,6 +38,7 @@ public class TelaInicialManager : MonoBehaviour
         btnOpcoes.SetActive(true);
         btnJogar.SetActive(true);
         btnSair.SetActive(true);
+        nameGame.SetActive(true);
     }
 
     public void Jogar()
@@ -44,6 +47,7 @@ public class TelaInicialManager : MonoBehaviour
         btnOpcoes.SetActive(false);
         btnJogar.SetActive(false);
         btnSair.SetActive(false);
+        SceneManager.LoadScene("Game");
     }
 
     public void ExitGame()
