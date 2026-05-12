@@ -46,6 +46,7 @@ public class AdoletaManager : MonoBehaviour
 
         currentInput = Random.Range(0, 4);
         currentTimeAction = maxTimeAction;
+        counterTime = 0;
         canClick = true;
 
         switch (currentInput)
@@ -72,6 +73,7 @@ public class AdoletaManager : MonoBehaviour
         if (counterTime >= maxTime)
         {
             gm.CloseMinigame(points, pointsEnemy);
+            StartCoroutine(DestroyObj());
         }
         else
         {
@@ -168,5 +170,11 @@ public class AdoletaManager : MonoBehaviour
 
         canClick = true;
         TMP.gameObject.SetActive(true);
+    }
+
+    IEnumerator DestroyObj()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }

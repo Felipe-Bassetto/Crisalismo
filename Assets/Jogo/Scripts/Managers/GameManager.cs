@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private CanvasManager cm;
     [SerializeField] private FriendShipValidation friendshipValidation;
+    [SerializeField] private SoundManager sm;
 
     [Header("Variaveis")]
     public List<int> listIndexBallons;
@@ -75,13 +76,16 @@ public class GameManager : MonoBehaviour
 
     public void CloseMinigame(int pointsMade, int enemyPointsMade)
     {
+        sm.PlaySound(0);
         pointsEnemy = enemyPointsMade;
         pointsMinigame = pointsMade;
         cm.VisibilityCanvas(inGameObj, true);
 
         cm.VisibilityCanvas(arrCanvasMinigames[indexMinigame], false);
 
-        friendshipValidation.Validate();
+        //friendshipValidation.Validate();
+
+        sm.PlayLoop(3);
     }
 
     public void ChooseFriend(GameObject friend)
@@ -113,6 +117,8 @@ public class GameManager : MonoBehaviour
             if (tempo == 0) textoContagem = "Já!";
             else textoContagem = "" + tempo;
         }
+
+        sm.PlayLoop(indexMinigame);
 
         counterTimeUI.enabled = false;
         cm.VisibilityCanvas(inGameObj,false);

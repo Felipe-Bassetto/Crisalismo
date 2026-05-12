@@ -118,10 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1143adfbc85fc4eaaf03c2bc21ed31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimeAction: 2
   currentTimeAction: 0
-  maxTimeFishing: 10
+  maxTimeAction: 2
   points: 0
   TMP: {fileID: 0}
   pointUI: {fileID: 0}
-  maxTime: 30
+  maxTime: 10
