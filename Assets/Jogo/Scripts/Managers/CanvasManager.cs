@@ -101,6 +101,8 @@ public class CanvasManager : MonoBehaviour
     {
         isSpeaking = false;
         VisibilityCanvas(dialogKid.transform.parent.gameObject,false);
+        gm.SetClick(true);
+        btnConstruir.SetActive(true);
     }
 
     public void Construir()
@@ -125,6 +127,7 @@ public class CanvasManager : MonoBehaviour
         sparks.SetActive(true);
         btnConstruir.SetActive(true);
         btnFecharConstruir.SetActive(false);
+        gm.SetClick(false);
     }
 
     public void ClosePrancheta()

@@ -23,8 +23,11 @@ public class ActivedConstruction : MonoBehaviour
 
     void OnMouseDown()
     {
-        GM.SetMinigame(indexContruction);
-        GM.OpenMinigame();
+        if (GM.canClick)
+        {
+            GM.SetMinigame(indexContruction);
+            GM.OpenMinigame();
+        }
     }
 
     

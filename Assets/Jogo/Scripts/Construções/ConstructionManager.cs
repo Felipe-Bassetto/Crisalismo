@@ -9,10 +9,11 @@ public class ConstructionManager : MonoBehaviour
 
     private Vector3 positionSpace;
     private GameObject objectAffected;
+    private GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm = FindFirstObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class ConstructionManager : MonoBehaviour
 
     public void Construir(int indexConst)
     {
+        gm.SetClick(true);
         Instantiate(arrPrefabsConstruction[indexConst], positionSpace, Quaternion.identity);
         objectAffected.SetActive(false);
         constructionWindow.SetActive(false);

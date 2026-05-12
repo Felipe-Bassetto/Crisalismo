@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Variaveis")]
     public List<int> listIndexBallons;
+    public bool canClick;
 
     [Header("Pontuação")]
     public int pointsMinigame;
@@ -55,11 +56,14 @@ public class GameManager : MonoBehaviour
         sparkMult = criancas.Length;
 
         counterTimeUI = GameObject.Find("Canvas").transform.Find("TimerMinigame").GetComponent<TextMeshProUGUI>();
+        canClick = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(canClick);
+
         if (counterTime < timerCiclo) counterTime += Time.deltaTime;
         else
         {
@@ -83,7 +87,7 @@ public class GameManager : MonoBehaviour
 
         cm.VisibilityCanvas(arrCanvasMinigames[indexMinigame], false);
 
-        //friendshipValidation.Validate();
+        friendshipValidation.Validate();
 
         sm.PlayLoop(3);
     }
@@ -101,6 +105,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void SetKidIndex(int index) => indexKid = index;
+
+    public void SetClick(bool click)
+    {
+        Debug.Log(click);
+        canClick = click;
+    }
 
     IEnumerator TimeStartMinigame()
     {

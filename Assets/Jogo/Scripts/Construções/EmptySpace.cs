@@ -6,10 +6,13 @@ public class EmptySpace: MonoBehaviour
 {
     public GameObject constructionWindow;
     public ConstructionManager cm;
+
+    private GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm = FindFirstObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -20,7 +23,11 @@ public class EmptySpace: MonoBehaviour
 
     void OnMouseDown()
     {
-        constructionWindow.SetActive(true);
-        cm.SetarVariaveis(gameObject.transform.position, gameObject);
+        if(gm.canClick)
+        {
+            constructionWindow.SetActive(true);
+            cm.SetarVariaveis(gameObject.transform.position, gameObject);
+            gm.SetClick(false);
+        }
     }
 }
