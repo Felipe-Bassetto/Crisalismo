@@ -11,6 +11,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private Transform buttonsChooseFriend;
     [SerializeField] private GameObject[] buttonsFriends;
     [SerializeField] private TextMeshProUGUI dialogKid;
+    [SerializeField] private RawImage dialogKidImj;
     [SerializeField] private GameObject nextText;
     [SerializeField] private GameObject closeDialog;
 
@@ -25,6 +26,8 @@ public class CanvasManager : MonoBehaviour
     [Header("Banco")]
     private Relacionamentos kidLevel;
     private List<Interacoes> kidInteraction;
+
+    [SerializeField] private Texture[] textures;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +60,8 @@ public class CanvasManager : MonoBehaviour
             kidLevel = db.CarregarRelacionamentos(kidIndex);
             kidInteraction = db.CarregarInteracoes(kidIndex, kidLevel.NivelAmizade);
 
+            dialogKidImj.texture = textures[kidIndex];
+
             VisibilityCanvas(dialogKid.transform.parent.gameObject,true);
             UpdateTextDialog(kidInteraction[speakIndex].Fala);
         }
@@ -65,8 +70,6 @@ public class CanvasManager : MonoBehaviour
     public void NextText()
     {
         speakIndex++;
-        Debug.Log(speakIndex);
-        Debug.Log(kidInteraction.Count);
         UpdateTextDialog(kidInteraction[speakIndex].Fala);
 
         if(kidInteraction.Count - 1 == speakIndex)
