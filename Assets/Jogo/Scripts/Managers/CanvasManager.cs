@@ -133,5 +133,6 @@ public class CanvasManager : MonoBehaviour
     public void ClosePrancheta()
     {
         prancheta.SetActive(false);
+        gm.SetClick(false);
     }
 }
