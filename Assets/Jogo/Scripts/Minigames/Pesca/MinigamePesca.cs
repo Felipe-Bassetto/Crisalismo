@@ -4,32 +4,32 @@ using TMPro;
 
 public class MinigamePesca : MonoBehaviour
 {
-    [Header("Referências de UI")]
+    [Header("Referï¿½ncias de UI")]
     public RectTransform BarraPlayer;
     public RectTransform peixeIcon;
     public Slider sliderProgresso;
     public TMP_Text pointUI;
     private TextMeshProUGUI pointUIEnemy;
 
-    [Header("Pontuação")]
+    [Header("Pontuaï¿½ï¿½o")]
     private int points = 0;
     private int pointsEnemy = 0;
 
-    [Header("Configurações de Limite")]
+    [Header("Configuraï¿½ï¿½es de Limite")]
     private float limiteTopo = 230f;
     private float limiteBase = -280f;
 
-    [Header("Configurações da Barra Player")]
+    [Header("Configuraï¿½ï¿½es da Barra Player")]
     public float gravidade = 500f;
-    public float forçaImpulso = 800f;
+    public float forcaImpulso = 800f;
     private float velocidadeBarra = 0f;
 
-    [Header("Configurações do Peixe")]
+    [Header("Configuraï¿½ï¿½es do Peixe")]
     public float velocidadePeixe = 3f;
     private float tempoParaTrocarDestino = 0f;
     private float destinoYPeixe;
 
-    [Header("Configurações do Jogo")]
+    [Header("Configuraï¿½ï¿½es do Jogo")]
     public float velocidadeGanho = 0.2f;
     public float velocidadePerda = 0.15f;
 
@@ -41,7 +41,7 @@ public class MinigamePesca : MonoBehaviour
     public float counterTime = 0;
 
     private float counterTimeEnemy = 0f;
-    private float maxTimeEnemy = 4f;
+    private float maxTimeEnemy = 6f;
 
     void Start()
     {
@@ -94,7 +94,7 @@ public class MinigamePesca : MonoBehaviour
     void ControleBarraPlayer()
     {
         if (Input.GetMouseButton(0))
-            velocidadeBarra += forçaImpulso * Time.deltaTime;
+            velocidadeBarra += forcaImpulso * Time.deltaTime;
         else
             velocidadeBarra -= gravidade * Time.deltaTime;
 
