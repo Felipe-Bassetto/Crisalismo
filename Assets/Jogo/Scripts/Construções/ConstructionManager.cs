@@ -25,7 +25,7 @@ public class ConstructionManager : MonoBehaviour
     public void Construir(int indexConst)
     {
         gm.SetClick(true);
-        Instantiate(arrPrefabsConstruction[indexConst], positionSpace, Quaternion.identity);
+        Instantiate(arrPrefabsConstruction[indexConst], positionSpace, arrPrefabsConstruction[indexConst].transform.rotation);
         objectAffected.SetActive(false);
         constructionWindow.SetActive(false);
     }

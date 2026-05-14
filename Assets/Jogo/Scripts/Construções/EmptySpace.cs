@@ -26,8 +26,9 @@ public class EmptySpace: MonoBehaviour
         if(gm.canClick)
         {
             constructionWindow.SetActive(true);
-            cm.SetarVariaveis(gameObject.transform.position, gameObject);
+            cm.SetarVariaveis(gameObject.transform.parent.gameObject.transform.position, gameObject);
             gm.SetClick(false);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 }
