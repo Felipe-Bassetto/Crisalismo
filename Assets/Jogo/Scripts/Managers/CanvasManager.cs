@@ -35,6 +35,8 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject btnConstruir;
     [SerializeField] private GameObject btnFecharConstruir;
     [SerializeField] private GameObject prancheta;
+    [SerializeField] private GameObject contrucoes;
+    [SerializeField] private GameObject decoration;
 
     // Start is called before the first frame update
     void Start()
@@ -117,17 +119,14 @@ public class CanvasManager : MonoBehaviour
         btnFecharConstruir.SetActive(true);
     }
 
-    public void FecharModoConstrucao()
+    public void ContrucaoMode(bool ativo)
     {
-        foreach (GameObject obj in arrEspaços)
-        {
-            if (obj != null) obj.SetActive(false);
-        }
+        contrucoes.SetActive(ativo);
+    }
 
-        sparks.SetActive(true);
-        btnConstruir.SetActive(true);
-        btnFecharConstruir.SetActive(false);
-        gm.SetClick(false);
+    public void DecorationMode(bool ativo)
+    {
+        decoration.SetActive(ativo);
     }
 
     public void ClosePrancheta()

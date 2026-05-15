@@ -62,8 +62,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(canClick);
-
         if (counterTime < timerCiclo) counterTime += Time.deltaTime;
         else
         {
