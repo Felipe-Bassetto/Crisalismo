@@ -6,7 +6,7 @@ public class Decoration : MonoBehaviour
 {
     [Header("Variáveis")]
     private LayerMask groundLayer;
-    public bool isCostructMode = true;
+    private bool isCostructMode = true;
 
 
 

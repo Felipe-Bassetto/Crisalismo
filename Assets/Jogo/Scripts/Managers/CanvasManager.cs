@@ -30,7 +30,8 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private Texture[] textures;
 
     [Header("GameObject")]
-    [SerializeField] private GameObject[] arrEspaços;
+    [SerializeField] private GameObject[] arrInstance;
+    [SerializeField] private GameObject[] arrPlanes;
     [SerializeField] private GameObject sparks;
     [SerializeField] private GameObject btnConstruir;
     [SerializeField] private GameObject btnFecharConstruir;
@@ -107,16 +108,9 @@ public class CanvasManager : MonoBehaviour
         btnConstruir.SetActive(true);
     }
 
-    public void Construir()
+    public void OpenPrancheta()
     {
-        foreach(GameObject obj in arrEspaços)
-        {
-            if(obj != null) obj.SetActive(true);
-        }
-
-        sparks.SetActive(false);
-        btnConstruir.SetActive(false);
-        btnFecharConstruir.SetActive(true);
+        prancheta.SetActive(true);
     }
 
     public void ContrucaoMode(bool ativo)
@@ -133,5 +127,24 @@ public class CanvasManager : MonoBehaviour
     {
         prancheta.SetActive(false);
         gm.SetClick(false);
+    }
+
+    public void InstantiateObject(int indexObj)
+    {
+        Instantiate(arrInstance[indexObj]);
+    }
+
+    public void DefinirPlane(bool decor)
+    {
+        if(decor)
+        {
+            arrPlanes[0].SetActive(false);
+            arrPlanes[1].SetActive(true);
+        }
+        else
+        {
+            arrPlanes[0].SetActive(true);
+            arrPlanes[1].SetActive(false);
+        }
     }
 }

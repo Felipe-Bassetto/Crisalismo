@@ -21,7 +21,7 @@ public class MovimentKids : MonoBehaviour
     {
         posX = Random.Range(15f, 38f);
         posZ = Random.Range(-27f, -14f);
-        destine = new Vector3(posX, 2f, posZ);
+        destine = new Vector3(posX, 0.78f, posZ);
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class MovimentKids : MonoBehaviour
         {
             posX = Random.Range(15f, 38f);
             posZ = Random.Range(-27f, -14f);
-            destine = new Vector3(posX,2f,posZ);
+            destine = new Vector3(posX,0.78f,posZ);
             canWalk = true;
         }
 
