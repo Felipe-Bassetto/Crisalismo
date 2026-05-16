@@ -38,6 +38,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject prancheta;
     [SerializeField] private GameObject contrucoes;
     [SerializeField] private GameObject decoration;
+    [SerializeField] private GameObject relationShip;
 
     // Start is called before the first frame update
     void Start()
@@ -121,6 +122,11 @@ public class CanvasManager : MonoBehaviour
     public void DecorationMode(bool ativo)
     {
         decoration.SetActive(ativo);
+    }
+
+    public void RelationShipMode(bool ativo)
+    {
+        relationShip.SetActive(ativo);
     }
 
     public void ClosePrancheta()
