@@ -25,7 +25,9 @@ public class CanvasManager : MonoBehaviour
 
     [Header("Banco")]
     private Relacionamentos kidLevel;
+    private Marcos marcos;
     private List<Interacoes> kidInteraction;
+    private List<Relacionamentos> listRelationship;
 
     [SerializeField] private Texture[] textures;
 
@@ -40,6 +42,11 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject decoration;
     [SerializeField] private GameObject relationShip;
 
+    [Header("Relacionamentos")]
+    [SerializeField] private GameObject[] arrKids;
+    [SerializeField] private TextMeshProUGUI[] arrMissaoKids;
+    [SerializeField] private TextMeshProUGUI[] arrNameKids;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +57,8 @@ public class CanvasManager : MonoBehaviour
 
             buttonsFriends[index-1].SetActive(true);
         }
+
+        VerifyFriendShip(true, 0);
     }
 
     public void VisibilityCanvas(GameObject obj, bool visibility)
@@ -68,7 +77,7 @@ public class CanvasManager : MonoBehaviour
         {
             isSpeaking = true;
             speakIndex = 0;
-            kidLevel = db.CarregarRelacionamentos(kidIndex);
+            kidLevel = db.CarregarRelacionamento(kidIndex);
             kidInteraction = db.CarregarInteracoes(kidIndex, kidLevel.NivelAmizade);
 
             dialogKidImj.texture = textures[kidIndex];
@@ -151,6 +160,42 @@ public class CanvasManager : MonoBehaviour
         {
             arrPlanes[0].SetActive(true);
             arrPlanes[1].SetActive(false);
+        }
+    }
+
+    public void VerifyFriendShip(bool todos, int index)
+    {
+        if(todos)
+        {
+            listRelationship = db.CarregarRelacionamentos();
+            for (int i = 0; i < listRelationship.Count; i++)
+            {
+                int indexKid = listRelationship[i].IdCrianca;
+                int numMarco = listRelationship[i].NivelAmizade;
+
+                if ((int)listRelationship[i].Conhecida == 0) arrKids[indexKid].SetActive(false);
+                else
+                {
+                    arrNameKids[indexKid].text = listRelationship[index].NomeCrianca.ToString() + " - " + numMarco;
+                    marcos = db.CarregarMarco((int)indexKid, (int)numMarco);
+
+                    int numQtd = marcos.Pontos;
+                    string nameMinigame = marcos.NomeBrincadeira;
+
+                    switch (marcos.MetodoVitoria)
+                    {
+                        case "P":
+                            arrMissaoKids[indexKid].text = "Consiga " + numQtd + " pontos no minigame " + nameMinigame + ".";
+                            break;
+                        case "G":
+                            arrMissaoKids[indexKid].text = "Ganhe " + numQtd + " vezes no minigame " + nameMinigame + ".";
+                            break;
+                        case "D":
+                            arrMissaoKids[indexKid].text = "Perca " + numQtd + " vezes no minigame " + nameMinigame + ".";
+                            break;
+                    }
+                }
+            }
         }
     }
 }

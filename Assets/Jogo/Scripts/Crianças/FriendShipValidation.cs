@@ -14,7 +14,7 @@ public class FriendShipValidation : MonoBehaviour
 
     public void Validate()
     {
-        relac = db.CarregarRelacionamentos(gm.indexKid);
+        relac = db.CarregarRelacionamento(gm.indexKid);
         marco = db.CarregarMarco(gm.indexKid, relac.NivelAmizade);
 
         switch(marco.MetodoVitoria)

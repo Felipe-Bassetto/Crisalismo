@@ -36,9 +36,14 @@ public class GameDatabase : MonoBehaviour
     }
 
     // ---------------- RELACIONAMENTOS ----------------
-    public Relacionamentos CarregarRelacionamentos(int idCria)
+    public Relacionamentos CarregarRelacionamento(int idCria)
     {
         return db.Table<Relacionamentos>().Where(r => r.IdSave == 0 && r.IdCrianca == idCria).FirstOrDefault();
+    }
+
+    public List<Relacionamentos> CarregarRelacionamentos()
+    {
+        return db.Table<Relacionamentos>().Where(r => r.IdSave == 0 && r.IdCrianca != 0).OrderBy(r => r.IdCrianca).ToList();
     }
 
     public void AtualizarRelacionamento(int id, int nivelAmizade, bool conhecida)
@@ -62,48 +67,6 @@ public class GameDatabase : MonoBehaviour
     {
         db.Execute("UPDATE Marcos SET Contador = ? WHERE Id = ?", contador, id);
     }
-
-    /*
-    public void AtualizarSave(int id, float volMusic, bool fullScreen, int tempo)
-    {
-        db.Execute("UPDATE Save SET VolMusic = ?, FullScreen = ?, TempoDeJogo = ?   WHERE Id = ?", volMusic, fullScreen ? 1 : 0, tempo, id);
-
-    }
-
-    
-    // ---------------- PROGRESSO ----------------
-    public void SalvarProgresso(int nivel,  int id)
-    {
-        db.Execute("UPDATE Progresso SET Fase = ? WHERE Id = ?", nivel, id);
-
-    }
-
-    public Progresso CarregarProgresso()
-    {
-        return db.Table<Progresso>().FirstOrDefault();
-    }
-
-    /*public Colecao CarregarColecao(string desbloq, int id)
-    {
-        if (desbloq == null) return db.Table<Colecao>().FirstOrDefault();
-        else return db.Table<Colecao>().Where(c => c.Coletado == desbloq && c.Id == id).FirstOrDefault();
-    }
-
-    // ---------------- COLE��O ----------------
-    public void SalvarColecao(int id, bool coletado)
-    {
-        db.Execute("UPDATE Colecao SET Coletado = ? WHERE Id = ?", coletado ? 1: 0, id);
-    }
-
-    public Colecao CarregarColec(int idNum)
-    {
-        return db.Table<Colecao>().Where(c => c.Id == idNum).FirstOrDefault();
-    }
-
-    public List<Colecao> CarregarArtColec()
-    {
-        return db.Table<Colecao>().ToList();
-    }*/
 
     void OnDestroy() //Passar para obj dontDestroy
     {
