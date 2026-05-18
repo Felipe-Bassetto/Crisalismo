@@ -8,6 +8,8 @@ public class Decoration : MonoBehaviour
     private LayerMask groundLayer;
     private bool isCostructMode = true;
 
+    [Header("scripts")]
+    private FriendShipValidation friends;
 
 
     // Start is called before the first frame update
@@ -27,7 +29,10 @@ public class Decoration : MonoBehaviour
         {
             transform.position = hit.point;
 
-            if (Input.GetMouseButtonDown(0)) isCostructMode = false;
+            if (Input.GetMouseButtonDown(0)) 
+            {
+                isCostructMode = false;
+            }
         }
     }
 

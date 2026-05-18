@@ -48,7 +48,7 @@ public class GameDatabase : MonoBehaviour
 
     public void AtualizarRelacionamento(int id, int nivelAmizade, bool conhecida)
     {
-        db.Execute("UPDATE Relacionamentos SET NivelAmizade = ?, Conhecida = ? WHERE Id = ?", nivelAmizade, conhecida, id);
+        db.Execute("UPDATE Relacionamentos SET NivelAmizade = ?, Conhecida = ? WHERE Id = ?", nivelAmizade, conhecida ? 1: 0, id);
     }
 
     // ---------------- INTERACOES ----------------

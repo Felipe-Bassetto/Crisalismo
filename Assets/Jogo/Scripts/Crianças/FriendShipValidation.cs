@@ -11,6 +11,7 @@ public class FriendShipValidation : MonoBehaviour
     [Header("Variaveis")]
     private Marcos marco;
     private Relacionamentos relac;
+    private List<Relacionamentos> listRelac;
 
     public void Validate()
     {
@@ -61,6 +62,34 @@ public class FriendShipValidation : MonoBehaviour
         {
             db.AtualizarRelacionamento(relac.Id, relac.NivelAmizade + 1, true);
             db.AtualizarMarco(marco.Id, marco.Contador + 1);
+        }
+    }
+    public void Decoracao()
+    {
+        listRelac = db.CarregarRelacionamentos();
+
+        for (int i = 0; i < listRelac.Count; i++)
+        {
+            int indexKid = listRelac[i].IdCrianca;
+            int numMarco = (int)listRelac[i].NivelAmizade;
+
+            marco = db.CarregarMarco(indexKid, numMarco);
+
+            if(marco.MetodoVitoria == "I")
+            {
+                int qtdDeco = (int)marco.Contador + 1;
+                int qtdNec = marco.Pontos;
+
+                if(qtdDeco == qtdNec)
+                {
+                    int idRelac = listRelac[i].Id;
+
+                    db.AtualizarRelacionamento(idRelac, numMarco + 1, true);
+                }
+
+                int idMarco = marco.Id;
+                db.AtualizarMarco(idMarco, qtdDeco);
+            }
         }
     }
 }
