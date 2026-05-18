@@ -180,18 +180,22 @@ public class CanvasManager : MonoBehaviour
                     marcos = db.CarregarMarco((int)indexKid, (int)numMarco);
 
                     int numQtd = marcos.Pontos;
+                    int qtdAtual = marcos.Contador;
                     string nameMinigame = marcos.NomeBrincadeira;
 
                     switch (marcos.MetodoVitoria)
                     {
                         case "P":
-                            arrMissaoKids[indexKid].text = "Consiga " + numQtd + " pontos no minigame " + nameMinigame + ".";
+                            arrMissaoKids[indexKid].text = "Consiga " + numQtd + " pontos no minigame " + nameMinigame + ". (" + qtdAtual + "/" + numQtd + ")";
                             break;
                         case "G":
-                            arrMissaoKids[indexKid].text = "Ganhe " + numQtd + " vezes no minigame " + nameMinigame + ".";
+                            arrMissaoKids[indexKid].text = "Ganhe " + numQtd + " vezes no minigame " + nameMinigame + ". (" + qtdAtual + "/" + numQtd + ")";
                             break;
                         case "D":
-                            arrMissaoKids[indexKid].text = "Perca " + numQtd + " vezes no minigame " + nameMinigame + ".";
+                            arrMissaoKids[indexKid].text = "Perca " + numQtd + " vezes no minigame " + nameMinigame + ". (" + qtdAtual + "/" + numQtd + ")";
+                            break;
+                        case "I":
+                            arrMissaoKids[indexKid].text = "Coloque " + numQtd + "Decorações. (" + qtdAtual + "/" + numQtd + ")";
                             break;
                     }
                 }

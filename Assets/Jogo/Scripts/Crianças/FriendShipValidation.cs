@@ -28,9 +28,6 @@ public class FriendShipValidation : MonoBehaviour
             case "G":
                 Vitoria();
                 break;
-            case "E":
-                Empate();
-                break;
         }
     }
 
@@ -49,17 +46,6 @@ public class FriendShipValidation : MonoBehaviour
     public void Vitoria()
     {
         if (gm.pointsMinigame > gm.pointsEnemy)
-        {
-            if (marco.Contador + 1 == marco.Pontos)
-            {
-                db.AtualizarRelacionamento(relac.Id, relac.NivelAmizade + 1, true);
-            }
-            db.AtualizarMarco(marco.Id, marco.Contador + 1);
-        }
-    }
-    public void Empate()
-    {
-        if (gm.pointsMinigame == gm.pointsEnemy)
         {
             if (marco.Contador + 1 == marco.Pontos)
             {
