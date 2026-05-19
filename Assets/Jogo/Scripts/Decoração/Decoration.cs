@@ -10,7 +10,7 @@ public class Decoration : MonoBehaviour
 
     [Header("scripts")]
     private FriendShipValidation friends;
-    private Prefabs prefab;
+    [SerializeField] private Prefabs prefab;
 
 
     // Start is called before the first frame update

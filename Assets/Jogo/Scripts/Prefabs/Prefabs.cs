@@ -10,6 +10,7 @@ public class Prefabs : MonoBehaviour
     {
         if (other.CompareTag("Construcao") || other.CompareTag("Decoracao"))
         {
+            Debug.Log("Entrou");
             podeConstruir = false;
         }
     }
@@ -18,6 +19,7 @@ public class Prefabs : MonoBehaviour
     {
         if (other.CompareTag("Construcao") || other.CompareTag("Decoracao"))
         {
+            Debug.Log("Saiu");
             podeConstruir = true;
         }
     }

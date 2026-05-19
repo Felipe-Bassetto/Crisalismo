@@ -13,7 +13,9 @@ public class ActivedConstruction : MonoBehaviour
     [Header("Variáveis Construct")]
     private LayerMask groundLayer;
     private bool isCostructMode = true;
-    public bool podeConstruir = true;
+
+    [Header("Scripts")]
+    [SerializeField] private Prefabs prefab;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class ActivedConstruction : MonoBehaviour
         {
             transform.position = hit.point;
 
-            if (Input.GetMouseButtonDown(0)) isCostructMode = false;
+            if (Input.GetMouseButtonDown(0) && prefab.podeConstruir) isCostructMode = false;
         }
     }
 
