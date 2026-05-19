@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5875943417701107875}
   m_Layer: 0
   m_Name: "Sof\xE1"
-  m_TagString: Untagged
+  m_TagString: Decoracao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 473f266b17e4e2d40a6f4a3b92075aa5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 807630c711cd97b478b431bfd616ced6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645e59f8e88902e4da172bb1fd63df1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCostructMode: 1
 --- !u!65 &5875943417701107875
 BoxCollider:
   m_ObjectHideFlags: 0

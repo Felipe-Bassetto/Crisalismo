@@ -10,6 +10,7 @@ public class Decoration : MonoBehaviour
 
     [Header("scripts")]
     private FriendShipValidation friends;
+    private Prefabs prefab;
 
 
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class Decoration : MonoBehaviour
         {
             transform.position = hit.point;
 
-            if (Input.GetMouseButtonDown(0)) 
+            if (Input.GetMouseButtonDown(0) && prefab.podeConstruir) 
             {
                 isCostructMode = false;
             }

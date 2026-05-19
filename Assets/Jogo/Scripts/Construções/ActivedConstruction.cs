@@ -13,6 +13,7 @@ public class ActivedConstruction : MonoBehaviour
     [Header("Variáveis Construct")]
     private LayerMask groundLayer;
     private bool isCostructMode = true;
+    public bool podeConstruir = true;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,4 @@ public class ActivedConstruction : MonoBehaviour
             GM.OpenMinigame();
         }
     }
-
-    
 }
