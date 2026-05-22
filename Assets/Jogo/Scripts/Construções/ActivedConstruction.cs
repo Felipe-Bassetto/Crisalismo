@@ -33,7 +33,11 @@ public class ActivedConstruction : MonoBehaviour
         {
             transform.position = hit.point;
 
-            if (Input.GetMouseButtonDown(0) && prefab.podeConstruir) isCostructMode = false;
+            if (Input.GetMouseButtonDown(0) && prefab.podeConstruir) 
+            {
+                isCostructMode = false;
+                GM.SetClick(true);
+            }
         }
     }
 
@@ -43,6 +47,7 @@ public class ActivedConstruction : MonoBehaviour
         {
             GM.SetMinigame(indexContruction);
             GM.OpenMinigame();
+            GM.SetClick(false);
         }
     }
 }

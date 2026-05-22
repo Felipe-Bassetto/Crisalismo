@@ -11,12 +11,14 @@ public class Decoration : MonoBehaviour
     [Header("scripts")]
     private FriendShipValidation friends;
     [SerializeField] private Prefabs prefab;
+    [SerializeField] private GameManager gm;
 
 
     // Start is called before the first frame update
     void Start()
     {
         groundLayer = LayerMask.GetMask("GroundConstruction");
+        gm = FindFirstObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class Decoration : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && prefab.podeConstruir) 
             {
                 isCostructMode = false;
+                gm.SetClick(true);
             }
         }
     }

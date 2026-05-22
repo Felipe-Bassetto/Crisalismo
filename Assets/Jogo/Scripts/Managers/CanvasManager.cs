@@ -121,6 +121,7 @@ public class CanvasManager : MonoBehaviour
     public void OpenPrancheta()
     {
         prancheta.SetActive(true);
+        gm.SetClick(false);
     }
 
     public void ContrucaoMode(bool ativo)
@@ -141,7 +142,7 @@ public class CanvasManager : MonoBehaviour
     public void ClosePrancheta()
     {
         prancheta.SetActive(false);
-        gm.SetClick(false);
+        gm.SetClick(true);
     }
 
     public void InstantiateObject(int indexObj)
@@ -176,7 +177,7 @@ public class CanvasManager : MonoBehaviour
                 if ((int)listRelationship[i].Conhecida == 0) arrKids[indexKid].SetActive(false);
                 else
                 {
-                    arrNameKids[indexKid].text = listRelationship[index].NomeCrianca.ToString() + " - " + numMarco;
+                    arrNameKids[indexKid].text = listRelationship[indexKid].NomeCrianca.ToString() + " - " + numMarco;
                     marcos = db.CarregarMarco((int)indexKid, (int)numMarco);
 
                     int numQtd = marcos.Pontos;

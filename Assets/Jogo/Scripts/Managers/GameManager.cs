@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
         friendshipValidation.Validate();
 
         sm.PlayLoop(3);
+
+        SetClick(true);
     }
 
     public void ChooseFriend(GameObject friend)
@@ -106,7 +108,6 @@ public class GameManager : MonoBehaviour
 
     public void SetClick(bool click)
     {
-        Debug.Log(click);
         canClick = click;
     }
 
