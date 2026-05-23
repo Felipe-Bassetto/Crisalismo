@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     public void OpenMinigame()
     {
         canvasFriends.SetActive(true);
+        cm.UpdateBtnConstruir(false);
     }
 
     public void CloseMinigame(int pointsMade, int enemyPointsMade)
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour
         sm.PlayLoop(3);
 
         SetClick(true);
+        cm.UpdateBtnConstruir(true);
     }
 
     public void ChooseFriend(GameObject friend)

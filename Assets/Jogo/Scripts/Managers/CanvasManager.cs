@@ -121,6 +121,7 @@ public class CanvasManager : MonoBehaviour
     public void OpenPrancheta()
     {
         prancheta.SetActive(true);
+        btnConstruir.SetActive(false);
         gm.SetClick(false);
     }
 
@@ -142,8 +143,11 @@ public class CanvasManager : MonoBehaviour
     public void ClosePrancheta()
     {
         prancheta.SetActive(false);
+        btnConstruir.SetActive(true);
         gm.SetClick(true);
     }
+
+    public void UpdateBtnConstruir(bool construct) => btnConstruir.SetActive(construct);
 
     public void InstantiateObject(int indexObj)
     {
