@@ -26,10 +26,12 @@ public class GameManager : MonoBehaviour
     private string textoContagem;
 
     [Header("Spark")]
+    public int sparkCount = 0;
+
     [SerializeField] private TextMeshProUGUI sparkUI;
 
     private int sparkMult;
-    private int sparkCount = 0;
+    
 
     [Header("Ciclo")]
     [SerializeField] private float timerCiclo;
@@ -111,6 +113,12 @@ public class GameManager : MonoBehaviour
     public void SetClick(bool click)
     {
         canClick = click;
+    }
+
+    public void Comprar(int preço)
+    {
+        sparkCount -= preço;
+        sparkUI.text = "" + sparkCount;
     }
 
     IEnumerator TimeStartMinigame()

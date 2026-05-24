@@ -20,8 +20,12 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameDatabase db;
 
     [Header("Variables")]
+    public int preço;
+
     private int speakIndex = 0;
     [SerializeField] private bool isSpeaking = false;
+
+    private Construcoes construcao;
 
     [Header("Banco")]
     private Relacionamentos kidLevel;
@@ -151,7 +155,19 @@ public class CanvasManager : MonoBehaviour
 
     public void InstantiateObject(int indexObj)
     {
-        Instantiate(arrInstance[indexObj]);
+        construcao = db.CarregarConstrucoes(indexObj);
+        preço = (int)construcao.Qtd_1;
+
+        if (preço <= gm.sparkCount)
+        {
+            Instantiate(arrInstance[indexObj]);
+            prancheta.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Sem grana irmão");
+        }
+        
     }
 
     public void DefinirPlane(bool decor)

@@ -68,6 +68,12 @@ public class GameDatabase : MonoBehaviour
         db.Execute("UPDATE Marcos SET Contador = ? WHERE Id = ?", contador, id);
     }
 
+    // ---------------- CONSTRUCOES ----------------
+    public Construcoes CarregarConstrucoes(int idConst)
+    {
+        return db.Table<Construcoes>().Where(c => c.IdConst == idConst).FirstOrDefault();
+    }
+
     void OnDestroy() //Passar para obj dontDestroy
     {
         db?.Close();
@@ -116,11 +122,9 @@ public class Construcoes
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
     public int IdSave { get; set; }
-    public string Name { get; set; }
+    public int IdConst { get; set; }
+    public string Nome { get; set; }
     public string Descricao { get; set; }
-    public int Requisito_1 { get; set; }
-    public int Requisito_2 { get; set; }
-    public int Requisito_3 { get; set; }
     public int Qtd_1 { get; set; }
     public int Qtd_2 { get; set; }
     public int Qtd_3 { get; set; }
