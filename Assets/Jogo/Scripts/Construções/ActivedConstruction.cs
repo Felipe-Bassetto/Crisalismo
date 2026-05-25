@@ -40,6 +40,7 @@ public class ActivedConstruction : MonoBehaviour
                 isCostructMode = false;
                 GM.SetClick(true);
                 GM.Comprar(cm.preço);
+                cm.ClosePrancheta();
             }
 
             if(Input.GetKeyDown(KeyCode.Escape))

@@ -26,6 +26,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private bool isSpeaking = false;
 
     private Construcoes construcao;
+    private Decoracoes decoracao;
 
     [Header("Banco")]
     private Relacionamentos kidLevel;
@@ -155,8 +156,16 @@ public class CanvasManager : MonoBehaviour
 
     public void InstantiateObject(int indexObj)
     {
-        construcao = db.CarregarConstrucoes(indexObj);
-        preço = (int)construcao.Qtd_1;
+        if (indexObj < 3)
+        {
+            construcao = db.CarregarConstrucoes(indexObj);
+            preço = (int)construcao.Qtd_1;
+        }
+        else
+        {
+            decoracao= db.CarregarDecoracoes(indexObj-3);
+            preço = (int)decoracao.Custo;
+        }
 
         if (preço <= gm.sparkCount)
         {

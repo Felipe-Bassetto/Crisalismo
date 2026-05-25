@@ -12,6 +12,7 @@ public class Decoration : MonoBehaviour
     private FriendShipValidation friends;
     [SerializeField] private Prefabs prefab;
     [SerializeField] private GameManager gm;
+    [SerializeField] private CanvasManager cm;
 
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class Decoration : MonoBehaviour
     {
         groundLayer = LayerMask.GetMask("GroundConstruction");
         gm = FindFirstObjectByType<GameManager>();
+        cm = FindFirstObjectByType<CanvasManager>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,14 @@ public class Decoration : MonoBehaviour
             {
                 isCostructMode = false;
                 gm.SetClick(true);
+                gm.Comprar(cm.preço);
+                cm.ClosePrancheta();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Destroy(gameObject);
+                cm.OpenPrancheta();
             }
         }
     }

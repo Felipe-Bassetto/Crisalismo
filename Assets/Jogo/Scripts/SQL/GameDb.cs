@@ -74,6 +74,12 @@ public class GameDatabase : MonoBehaviour
         return db.Table<Construcoes>().Where(c => c.IdConst == idConst).FirstOrDefault();
     }
 
+    // ---------------- DECORACOES ----------------
+    public Decoracoes CarregarDecoracoes(int idDeco)
+    {
+        return db.Table<Decoracoes>().Where(c => c.IdDeco == idDeco).FirstOrDefault();
+    }
+
     void OnDestroy() //Passar para obj dontDestroy
     {
         db?.Close();
@@ -160,5 +166,16 @@ public class Interacoes
     public int NivelAmizade { get; set; }
     public int NumeroFala { get; set; }
     public string Fala { get; set; }
+}
+
+public class Decoracoes
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+    public int IdDeco { get; set; }
+    public string Nome { get; set; }
+    public int Desbloq { get; set; } // 0 ou 1
+    public int Custo { get; set; }
+    public string Tamanho { get; set; }
 }
 
