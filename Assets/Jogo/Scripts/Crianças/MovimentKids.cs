@@ -14,6 +14,7 @@ public class MovimentKids : MonoBehaviour
     private bool canWalk = true;
     private float posX;
     private float posZ;
+    Animator anim;
 
 
     // Start is called before the first frame update
@@ -22,6 +23,11 @@ public class MovimentKids : MonoBehaviour
         posX = Random.Range(15f, 38f);
         posZ = Random.Range(-27f, -14f);
         destine = new Vector3(posX, 0.78f, posZ);
+
+        anim = GetComponent<Animator>();
+
+        anim.SetBool("Andando", true);
+        anim.SetBool("Parando", false);
     }
 
     // Update is called once per frame
@@ -34,6 +40,8 @@ public class MovimentKids : MonoBehaviour
             posZ = Random.Range(-27f, -14f);
             destine = new Vector3(posX,0.78f,posZ);
             canWalk = true;
+            anim.SetBool("Andando",true);
+            anim.SetBool("Parando", false);
         }
 
         if (canWalk)
@@ -43,9 +51,11 @@ public class MovimentKids : MonoBehaviour
             transform.rotation = rot;
             gameObject.transform.rotation = rot;
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, destine, velocity * Time.deltaTime);
-            if (gameObject.transform.position == destine)
+            if (gameObject.transform.position == destine && canWalk)
             {
                 canWalk = false;
+                anim.SetBool("Andando", false);
+                anim.SetBool("Parando", true);
                 counterTime = seconds;
             }
         }
