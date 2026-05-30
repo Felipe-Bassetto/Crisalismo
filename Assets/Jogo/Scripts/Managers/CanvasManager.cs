@@ -203,10 +203,14 @@ public class CanvasManager : MonoBehaviour
                 int indexKid = listRelationship[i].IdCrianca;
                 int numMarco = listRelationship[i].NivelAmizade;
 
+                Debug.Log(listRelationship[i]);
+
                 if ((int)listRelationship[i].Conhecida == 0) arrKids[indexKid].SetActive(false);
                 else
                 {
-                    arrNameKids[indexKid].text = listRelationship[indexKid].NomeCrianca.ToString() + " - " + numMarco;
+                    arrKids[indexKid].SetActive(true);
+
+                    arrNameKids[indexKid].text = listRelationship[i].NomeCrianca.ToString() + " - " + numMarco;
                     marcos = db.CarregarMarco((int)indexKid, (int)numMarco);
 
                     int numQtd = marcos.Pontos;

@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         cm.UpdateBtnConstruir(true);
     }
 
-    public void ChooseFriend(GameObject friend)
+    public void ChooseFriend()
     {
         canvasFriends.SetActive(false);
         StartCoroutine(TimeStartMinigame());
