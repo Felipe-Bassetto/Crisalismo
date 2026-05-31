@@ -20,8 +20,13 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameDatabase db;
 
     [Header("Variables")]
+    public int preço;
+
     private int speakIndex = 0;
     [SerializeField] private bool isSpeaking = false;
+
+    private Construcoes construcao;
+    private Decoracoes decoracao;
 
     [Header("Banco")]
     private Relacionamentos kidLevel;
@@ -121,6 +126,8 @@ public class CanvasManager : MonoBehaviour
     public void OpenPrancheta()
     {
         prancheta.SetActive(true);
+        btnConstruir.SetActive(false);
+        gm.SetClick(false);
     }
 
     public void ContrucaoMode(bool ativo)
@@ -141,12 +148,35 @@ public class CanvasManager : MonoBehaviour
     public void ClosePrancheta()
     {
         prancheta.SetActive(false);
-        gm.SetClick(false);
+        btnConstruir.SetActive(true);
+        gm.SetClick(true);
     }
+
+    public void UpdateBtnConstruir(bool construct) => btnConstruir.SetActive(construct);
 
     public void InstantiateObject(int indexObj)
     {
-        Instantiate(arrInstance[indexObj]);
+        if (indexObj < 3)
+        {
+            construcao = db.CarregarConstrucoes(indexObj);
+            preço = (int)construcao.Qtd_1;
+        }
+        else
+        {
+            decoracao= db.CarregarDecoracoes(indexObj-3);
+            preço = (int)decoracao.Custo;
+        }
+
+        if (preço <= gm.sparkCount)
+        {
+            Instantiate(arrInstance[indexObj]);
+            prancheta.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Sem grana irmão");
+        }
+        
     }
 
     public void DefinirPlane(bool decor)
@@ -173,10 +203,14 @@ public class CanvasManager : MonoBehaviour
                 int indexKid = listRelationship[i].IdCrianca;
                 int numMarco = listRelationship[i].NivelAmizade;
 
+                Debug.Log(listRelationship[i]);
+
                 if ((int)listRelationship[i].Conhecida == 0) arrKids[indexKid].SetActive(false);
                 else
                 {
-                    arrNameKids[indexKid].text = listRelationship[index].NomeCrianca.ToString() + " - " + numMarco;
+                    arrKids[indexKid].SetActive(true);
+
+                    arrNameKids[indexKid].text = listRelationship[i].NomeCrianca.ToString() + " - " + numMarco;
                     marcos = db.CarregarMarco((int)indexKid, (int)numMarco);
 
                     int numQtd = marcos.Pontos;

@@ -9,6 +9,7 @@ public class ActivedConstruction : MonoBehaviour
     public int indexContruction;
 
     private GameManager GM;
+    private CanvasManager cm;
 
     [Header("Variáveis Construct")]
     private LayerMask groundLayer;
@@ -21,6 +22,7 @@ public class ActivedConstruction : MonoBehaviour
     void Start()
     {
         GM = FindFirstObjectByType<GameManager>();
+        cm = FindFirstObjectByType<CanvasManager>();
         groundLayer = LayerMask.GetMask("GroundConstruction");
     }
 
@@ -37,6 +39,14 @@ public class ActivedConstruction : MonoBehaviour
             {
                 isCostructMode = false;
                 GM.SetClick(true);
+                GM.Comprar(cm.preço);
+                cm.ClosePrancheta();
+            }
+
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Destroy(gameObject);
+                cm.OpenPrancheta();
             }
         }
     }
@@ -47,6 +57,7 @@ public class ActivedConstruction : MonoBehaviour
         {
             GM.SetMinigame(indexContruction);
             GM.OpenMinigame();
+            GM.SetClick(false);
         }
     }
 }

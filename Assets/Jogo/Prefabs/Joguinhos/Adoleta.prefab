@@ -121,6 +121,19 @@ MonoBehaviour:
   currentTimeAction: 0
   maxTimeAction: 2
   points: 0
-  TMP: {fileID: 0}
+  imgSeta: {fileID: 0}
+  imgFundo: {fileID: 0}
   pointUI: {fileID: 0}
   maxTime: 30
+  counterFundo: 0
+  arrSetas:
+  - {fileID: 2800000, guid: 4e8859044306fe44ebc79806b8396773, type: 3}
+  - {fileID: 2800000, guid: 368e0d405e821e040843dace7f21cf79, type: 3}
+  - {fileID: 2800000, guid: 966f8cd778c682545ab1e36eb1f2eac1, type: 3}
+  - {fileID: 2800000, guid: 7194c6cac67f4b54d8fd8c982259ab48, type: 3}
+  arrFundo:
+  - {fileID: 2800000, guid: 780d21a6735d9eb4aa0d23f8b12afd4d, type: 3}
+  - {fileID: 2800000, guid: 4a5df19f02d62af4399a7dd0178e2bce, type: 3}
+  - {fileID: 2800000, guid: 1e15b1133db8668498a30d5c0bbcc014, type: 3}
+  - {fileID: 2800000, guid: 26180653624683b4bbe589f8bd8b56a3, type: 3}
+  - {fileID: 2800000, guid: a170be7c254852d4aa8dee8168b97e8a, type: 3}

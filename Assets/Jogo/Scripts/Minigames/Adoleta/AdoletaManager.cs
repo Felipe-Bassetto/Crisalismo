@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class AdoletaManager : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class AdoletaManager : MonoBehaviour
     
 
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI TMP;
+    [SerializeField] private RawImage imgSeta;
+    [SerializeField] private RawImage imgFundo;
     [SerializeField] private TextMeshProUGUI pointUI;
 
     [Header("Scripts")]
@@ -24,22 +26,31 @@ public class AdoletaManager : MonoBehaviour
 
     [Header("Timer")]
     [SerializeField] private float maxTime;
+    [SerializeField] private int counterFundo;
 
     private float counterTime = 0;
+
+    [Header("Sprites")]
+    [SerializeField] private Texture[] arrSetas;
+    [SerializeField] private Texture[] arrFundo;
 
 
     private void Start()
     {
-        
+        counterFundo = 0;
 
         gm = FindFirstObjectByType<GameManager>();
         GameObject canvas = gm.arrCanvasMinigames[gm.indexMinigame];
-        Transform seta = canvas.transform.Find("Direção");
+        Transform seta = canvas.transform.Find("Seta");
+        Transform fundo = canvas.transform.Find("Fundo");
         Transform pontos = canvas.transform.Find("Points");
 
         GameObject objSeta = seta.gameObject;
+        GameObject objFundo = fundo.gameObject;
         GameObject objPoint = pontos.gameObject;
-        TMP = objSeta.GetComponent<TextMeshProUGUI>();
+
+        imgSeta = objSeta.GetComponent<RawImage>();
+        imgFundo = objFundo.GetComponent<RawImage>();
         pointUI = objPoint.GetComponent<TextMeshProUGUI>();
 
         pointUI.text = "0";
@@ -49,21 +60,7 @@ public class AdoletaManager : MonoBehaviour
         counterTime = 0;
         canClick = true;
 
-        switch (currentInput)
-        { 
-            case 0:
-                TMP.text = "Cima";
-                    break;
-            case 1:
-                TMP.text = "Baixo";
-                    break;
-            case 2:
-                TMP.text = "Esquerda";
-                    break;
-                case 3:
-                TMP.text = "Direita";
-                break;
-        }
+        imgSeta.texture = arrSetas[currentInput];
 
         pointUI.text = "" + points;
     }
@@ -122,7 +119,13 @@ public class AdoletaManager : MonoBehaviour
     private void getAction(int action)
     {
         canClick = false;
-        TMP.gameObject.SetActive(false);
+        imgSeta.gameObject.SetActive(false);
+
+        counterFundo++;
+
+        if(counterFundo == 5) counterFundo = 0;
+
+        imgFundo.texture = arrFundo[counterFundo];
         if (currentInput == action)
         {
             addPoint();
@@ -152,24 +155,10 @@ public class AdoletaManager : MonoBehaviour
         currentInput = Random.Range(0, 4);
         currentTimeAction = maxTimeAction;
 
-        switch (currentInput)
-        {
-            case 0:
-                TMP.text = "Cima";
-                break;
-            case 1:
-                TMP.text = "Baixo";
-                break;
-            case 2:
-                TMP.text = "Esquerda";
-                break;
-            case 3:
-                TMP.text = "Direita";
-                break;
-        }
+        imgSeta.texture = arrSetas[currentInput];
 
         canClick = true;
-        TMP.gameObject.SetActive(true);
+        imgSeta.gameObject.SetActive(true);
     }
 
     IEnumerator DestroyObj()

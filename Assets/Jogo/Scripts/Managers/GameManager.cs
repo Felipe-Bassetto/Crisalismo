@@ -26,10 +26,12 @@ public class GameManager : MonoBehaviour
     private string textoContagem;
 
     [Header("Spark")]
+    public int sparkCount = 0;
+
     [SerializeField] private TextMeshProUGUI sparkUI;
 
     private int sparkMult;
-    private int sparkCount = 0;
+    
 
     [Header("Ciclo")]
     [SerializeField] private float timerCiclo;
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
     public void OpenMinigame()
     {
         canvasFriends.SetActive(true);
+        cm.UpdateBtnConstruir(false);
     }
 
     public void CloseMinigame(int pointsMade, int enemyPointsMade)
@@ -88,9 +91,12 @@ public class GameManager : MonoBehaviour
         friendshipValidation.Validate();
 
         sm.PlayLoop(3);
+
+        SetClick(true);
+        cm.UpdateBtnConstruir(true);
     }
 
-    public void ChooseFriend(GameObject friend)
+    public void ChooseFriend()
     {
         canvasFriends.SetActive(false);
         StartCoroutine(TimeStartMinigame());
@@ -106,8 +112,13 @@ public class GameManager : MonoBehaviour
 
     public void SetClick(bool click)
     {
-        Debug.Log(click);
         canClick = click;
+    }
+
+    public void Comprar(int preço)
+    {
+        sparkCount -= preço;
+        sparkUI.text = "" + sparkCount;
     }
 
     IEnumerator TimeStartMinigame()
