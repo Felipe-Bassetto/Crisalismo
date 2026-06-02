@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -353,10 +353,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1380803243}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseFriend
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1819,10 +1819,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1380803243}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseFriend
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3066,10 +3066,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1380803243}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseFriend
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3969,10 +3969,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1380803243}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseFriend
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10320,7 +10320,7 @@ MonoBehaviour:
   canvasFriends: {fileID: 2065346683}
   inGameObj: {fileID: 1937625424}
   counterTimeUI: {fileID: 856350085}
-  sparkCount: 0
+  sparkCount: 10000
   sparkUI: {fileID: 262884328}
   timerCiclo: 10
   cm: {fileID: 1451491051}
