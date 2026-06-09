@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
         "Essa é sua quantidade de Sparkle.",
         "Esse é o botão de construção. Vamos tentar!",
         "Escolha Palco de Teatro e a posicione no tabuleiro.",
+        "Escolha Palco de Teatro e a posicione no tabuleiro.",
         "Essas são as crianças que estão brincando no forte.",
         "Cada criança também gera Sparkles com o tempo.",
         "Construa a primeira decoração.",
@@ -87,29 +88,30 @@ public class TutorialManager : MonoBehaviour
         }
 
         if (passoAtual == 3
-            // && detectar botão de construção no palco
+            // && detectar botão de construção
             )
         {
+            // tirar png do botão de construcao
             // dar adoleta.QuantidadeDeSpark para o jogador
             // colocar png botao do palco 
             ProximoPasso();
         }
         if (passoAtual == 4
-            // && detectar objeto de construcao criado
+            // && detectar botão de palco criado
             )
         {
-            // colocar png botao do palco 
+            // tirar png botao do palco 
             ProximoPasso();
         }
-        if (passoAtual == 5 && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if (passoAtual == 5
+            // && objeto palco criado
             )
         {
             // spawnar criancas
             // falas[3]
             ProximoPasso();
         }
-        if (passoAtual == 6
-            // && detectar objeto de construcao criado
+        if (passoAtual == 6 && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             )
         {
             // colocar png botao do palco 
@@ -158,6 +160,13 @@ public class TutorialManager : MonoBehaviour
             ProximoPasso();
         }
         if (passoAtual == 13
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 14
             // && detectar objeto de construcao criado
             )
         {
