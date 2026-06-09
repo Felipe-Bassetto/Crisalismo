@@ -190,6 +190,9 @@ public class CanvasManager : MonoBehaviour
         {
             arrPlanes[0].SetActive(true);
             arrPlanes[1].SetActive(false);
+            arrPlanes[2].SetActive(false);
+            arrPlanes[3].SetActive(false);
+            arrPlanes[4].SetActive(false);
         }
     }
 
@@ -210,9 +213,6 @@ public class CanvasManager : MonoBehaviour
             {
                 int indexKid = listRelationship[i].IdCrianca;
                 int numMarco = listRelationship[i].NivelAmizade;
-
-                Debug.Log(indexKid);
-                Debug.Log(numMarco);
 
                 if ((int)listRelationship[i].Conhecida == 0) arrKids[indexKid].SetActive(false);
                 else

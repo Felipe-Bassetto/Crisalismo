@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17387812, g: 0.21740997, b: 0.29956794, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1896,7 +1896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &149914931
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4665,7 +4665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &365729321
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10037,7 +10037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &684015482
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15230,7 +15230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1073099993
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19413,7 +19413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1379543793
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19570,7 +19570,7 @@ MonoBehaviour:
   friendshipValidation: {fileID: 2104284613}
   sm: {fileID: 1104995296}
   listIndexBallons: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
-  canClick: 0
+  canClick: 1
   pointsMinigame: 0
   pointsEnemy: 0
 --- !u!4 &1380803244
