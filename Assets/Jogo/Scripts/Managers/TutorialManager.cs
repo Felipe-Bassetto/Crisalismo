@@ -87,9 +87,10 @@ public class TutorialManager : MonoBehaviour
         }
 
         if (passoAtual == 3
-            // && detectar objeto de construcao criado
+            // && detectar botão de construção no palco
             )
         {
+            // dar adoleta.QuantidadeDeSpark para o jogador
             // colocar png botao do palco 
             ProximoPasso();
         }
@@ -104,7 +105,8 @@ public class TutorialManager : MonoBehaviour
             // && detectar objeto de construcao criado
             )
         {
-            // colocar png botao do palco 
+            // spawnar criancas
+            // falas[3]
             ProximoPasso();
         }
         if (passoAtual == 6
