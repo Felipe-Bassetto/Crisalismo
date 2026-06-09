@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour
         "Essa é sua quantidade de Sparkle.",
         "Esse é o botão de construção. Vamos tentar!",
         "Escolha Palco de Teatro e a posicione no tabuleiro.",
-        "Esse contador mostra quantas crianças estão brincando no forte.",
+        "Essas são as crianças que estão brincando no forte.",
         "Cada criança também gera Sparkles com o tempo.",
         "Construa a primeira decoração.",
         "Veja as necessidades das outras crianças.",
@@ -101,8 +101,7 @@ public class TutorialManager : MonoBehaviour
             // colocar png botao do palco 
             ProximoPasso();
         }
-        if (passoAtual == 5
-            // && detectar objeto de construcao criado
+        if (passoAtual == 5 && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             )
         {
             // spawnar criancas
