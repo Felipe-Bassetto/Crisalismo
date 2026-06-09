@@ -232,4 +232,14 @@ public class TutorialManager : MonoBehaviour
             // iniciar cena de jogo
         }
     }
+
+    private void ColocarPNG(int x, int y)
+    {
+
+    }
+
+    private void TirarPNG()
+    {
+
+    }
 }
