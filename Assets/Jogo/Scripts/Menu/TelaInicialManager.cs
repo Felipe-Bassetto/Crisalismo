@@ -47,7 +47,7 @@ public class TelaInicialManager : MonoBehaviour
         btnOpcoes.SetActive(false);
         btnJogar.SetActive(false);
         btnSair.SetActive(false);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void ExitGame()
