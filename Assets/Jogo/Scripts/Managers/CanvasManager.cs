@@ -193,6 +193,14 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    public void ActivePlanes()
+    {
+        foreach(var plane in arrPlanes)
+        {
+            plane.SetActive(true);
+        }
+    }
+
     public void VerifyFriendShip(bool todos, int index)
     {
         if(todos)

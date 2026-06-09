@@ -5,28 +5,87 @@ using UnityEngine;
 public class Decoration : MonoBehaviour
 {
     [Header("Variáveis")]
+    [SerializeField] private int index;
     private LayerMask groundLayer;
     private bool isCostructMode = true;
 
-    [Header("scripts")]
-    private FriendShipValidation friends;
-    [SerializeField] private Prefabs prefab;
-    [SerializeField] private GameManager gm;
-    [SerializeField] private CanvasManager cm;
+    [Header("GameObjects")]
     [SerializeField] private GameObject planePequeno;
     [SerializeField] private GameObject planeMedio;
     [SerializeField] private GameObject planeGrande;
     [SerializeField] private GameObject planeParede;
     [SerializeField] private GameObject planeChao;
 
+    [Header("scripts")]
+    private FriendShipValidation friends;
+    [SerializeField] private Prefabs prefab;
+    [SerializeField] private GameManager gm;
+    [SerializeField] private CanvasManager cm;
+    [SerializeField] private GameDatabase db;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        cm = FindFirstObjectByType<CanvasManager>();
+
+        cm.ActivePlanes();
+
+        planePequeno = GameObject.Find("PlaneConstrucaoP");
+        planeMedio = GameObject.Find("PlaneConstrucaoM");
+        planeGrande = GameObject.Find("PlaneConstrucaoG");
+        planeChao = GameObject.Find("PlaneConstrucaoC");
+        planeParede = GameObject.Find("PlaneConstrucaoW");
+
         groundLayer = LayerMask.GetMask("GroundConstruction");
         gm = FindFirstObjectByType<GameManager>();
-        cm = FindFirstObjectByType<CanvasManager>();
+        
         friends = FindFirstObjectByType<FriendShipValidation>();
+        db = FindFirstObjectByType<GameDatabase>();
+
+        Decoracoes decoracao = db.CarregarDecoracoes(index);
+
+        string tamanho = decoracao.Tamanho;
+
+        switch(tamanho)
+        {
+            case "p":
+                planePequeno.SetActive(true);
+                planeMedio.SetActive(false);
+                planeGrande.SetActive(false);
+                planeParede.SetActive(false);
+                planeChao.SetActive(false);
+                break;
+            case "m":
+                planePequeno.SetActive(false);
+                planeMedio.SetActive(true);
+                planeGrande.SetActive(false);
+                planeParede.SetActive(false);
+                planeChao.SetActive(false);
+                break;
+            case "g":
+                planePequeno.SetActive(false);
+                planeMedio.SetActive(false);
+                planeGrande.SetActive(true);
+                planeParede.SetActive(false);
+                planeChao.SetActive(false);
+                break;
+            case "c":
+                planePequeno.SetActive(false);
+                planeMedio.SetActive(false);
+                planeGrande.SetActive(false);
+                planeParede.SetActive(false);
+                planeChao.SetActive(true);
+                break;
+            case "w":
+                planePequeno.SetActive(false);
+                planeMedio.SetActive(false);
+                planeGrande.SetActive(false);
+                planeParede.SetActive(true);
+                planeChao.SetActive(false);
+                break;
+        }
     }
 
     // Update is called once per frame
