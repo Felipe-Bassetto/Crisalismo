@@ -13,6 +13,11 @@ public class Decoration : MonoBehaviour
     [SerializeField] private Prefabs prefab;
     [SerializeField] private GameManager gm;
     [SerializeField] private CanvasManager cm;
+    [SerializeField] private GameObject planePequeno;
+    [SerializeField] private GameObject planeMedio;
+    [SerializeField] private GameObject planeGrande;
+    [SerializeField] private GameObject planeParede;
+    [SerializeField] private GameObject planeChao;
 
 
     // Start is called before the first frame update
