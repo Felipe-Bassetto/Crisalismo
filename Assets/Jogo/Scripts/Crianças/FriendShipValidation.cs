@@ -7,6 +7,7 @@ public class FriendShipValidation : MonoBehaviour
     [Header("Scrípts")]
     [SerializeField] private GameDatabase db;
     [SerializeField] private GameManager gm;
+    [SerializeField] private CanvasManager cm;
 
     [Header("Variaveis")]
     private Marcos marco;
@@ -42,6 +43,8 @@ public class FriendShipValidation : MonoBehaviour
             }
             db.AtualizarMarco(marco.Id, marco.Contador + 1);
         }
+
+        cm.VerifyFriendShip(true, 0);
     }
 
     public void Vitoria()
@@ -54,6 +57,8 @@ public class FriendShipValidation : MonoBehaviour
             }
             db.AtualizarMarco(marco.Id, marco.Contador + 1);
         }
+
+        cm.VerifyFriendShip(true, 0);
     }
 
     public void Pontos()
@@ -63,6 +68,8 @@ public class FriendShipValidation : MonoBehaviour
             db.AtualizarRelacionamento(relac.Id, relac.NivelAmizade + 1, true);
             db.AtualizarMarco(marco.Id, marco.Contador + 1);
         }
+
+        cm.VerifyFriendShip(true, 0);
     }
     public void Decoracao()
     {
@@ -91,5 +98,7 @@ public class FriendShipValidation : MonoBehaviour
                 db.AtualizarMarco(idMarco, qtdDeco);
             }
         }
+
+        cm.VerifyFriendShip(true, 0);
     }
 }

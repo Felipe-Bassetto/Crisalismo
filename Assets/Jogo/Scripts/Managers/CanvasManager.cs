@@ -203,7 +203,8 @@ public class CanvasManager : MonoBehaviour
                 int indexKid = listRelationship[i].IdCrianca;
                 int numMarco = listRelationship[i].NivelAmizade;
 
-                Debug.Log(listRelationship[i]);
+                Debug.Log(indexKid);
+                Debug.Log(numMarco);
 
                 if ((int)listRelationship[i].Conhecida == 0) arrKids[indexKid].SetActive(false);
                 else
@@ -229,7 +230,7 @@ public class CanvasManager : MonoBehaviour
                             arrMissaoKids[indexKid].text = "Perca " + numQtd + " vezes no minigame " + nameMinigame + ". (" + qtdAtual + "/" + numQtd + ")";
                             break;
                         case "I":
-                            arrMissaoKids[indexKid].text = "Coloque " + numQtd + "Decorações. (" + qtdAtual + "/" + numQtd + ")";
+                            arrMissaoKids[indexKid].text = "Coloque " + numQtd + " Decorações. (" + qtdAtual + "/" + numQtd + ")";
                             break;
                     }
                 }

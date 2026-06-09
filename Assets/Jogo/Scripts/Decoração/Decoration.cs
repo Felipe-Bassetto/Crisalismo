@@ -21,6 +21,7 @@ public class Decoration : MonoBehaviour
         groundLayer = LayerMask.GetMask("GroundConstruction");
         gm = FindFirstObjectByType<GameManager>();
         cm = FindFirstObjectByType<CanvasManager>();
+        friends = FindFirstObjectByType<FriendShipValidation>();
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class Decoration : MonoBehaviour
                 isCostructMode = false;
                 gm.SetClick(true);
                 gm.Comprar(cm.preço);
+                friends.Decoracao();
                 cm.ClosePrancheta();
             }
 
