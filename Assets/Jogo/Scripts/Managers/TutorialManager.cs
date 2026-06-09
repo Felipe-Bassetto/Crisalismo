@@ -39,6 +39,8 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+        // setar a câmera com X 38, Y -190, Z -257
+        // falas[0]
         MostrarPasso();
     }
 
@@ -64,9 +66,6 @@ public class TutorialManager : MonoBehaviour
     {
         if (passoAtual == 0 && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)))
         {
-            // setar a câmera com X 38, Y -190, Z -257
-            // falas[0]
-            //
             ProximoPasso();
         }
 
@@ -88,6 +87,76 @@ public class TutorialManager : MonoBehaviour
         }
 
         if (passoAtual == 3
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 4
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 5
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 6
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 7
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 8
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 9
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 10
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 11
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 12
+            // && detectar objeto de construcao criado
+            )
+        {
+            // colocar png botao do palco 
+            ProximoPasso();
+        }
+        if (passoAtual == 13
             // && detectar objeto de construcao criado
             )
         {
